@@ -38,12 +38,13 @@ export const OfferBanner  = () => (
     top:-30,
   },
   offerPerc:{
-    fontSize:30, 
+    fontSize:28, 
     fontFamily:'Lato-Bold',
-    color:COLOR.black
+    color:COLOR.black,
+    marginBottom:5,
   },
   subText:{
-    fontSize:17, 
+    fontSize:16, 
     marginTop:5, 
     fontFamily:'Lato-Regular',
     color:COLOR.grey

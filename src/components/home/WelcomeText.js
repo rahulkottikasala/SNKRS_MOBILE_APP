@@ -13,12 +13,12 @@ export const WelcomeText = () => (
       paddingHorizontal:20,
     },
     welcomeText:{
-      fontSize:29, 
+      fontSize:28, 
       color:COLOR.black,
       fontFamily:"Bold"
     },
     welcomeTextShade:{
-      fontSize:26, 
+      fontSize:24, 
       fontFamily:"SemiBold",
       color:COLOR.grey
     }

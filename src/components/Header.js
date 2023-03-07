@@ -7,14 +7,14 @@ import SearchIcon from '../assets/icons/search-normal.png'
 import MenuIcon from '../assets/icons/menu.png'
 import { COLOR } from '../const/Color'
 
-const Header = ({ backBtn, title }) => {
+const Header = ({ backBtn, title, bg }) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, bg && {backgroundColor:bg}]}>
             {title && <View style={styles.headerTextContainer}>
                 <Text style={styles.headerText}>{title ? "Wishlist" : "Title"}</Text>
             </View>}
             {backBtn ?
-                <TouchableOpacity style={styles.logoButton}>
+                <TouchableOpacity style={styles.logoButton} onPress={() => backBtn()}>
                     <Image style={styles.logo} source={ArrowLeft} />
                 </TouchableOpacity>
                 : <TouchableOpacity style={styles.logoButton}>

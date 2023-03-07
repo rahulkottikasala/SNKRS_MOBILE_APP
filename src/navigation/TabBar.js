@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, Dimensions, Image, Platform, StyleSheet } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, Image, Platform, StyleSheet, StatusBar } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { COLOR } from '../const/Color'
 import HomeIcon from '../assets/icons/home.png'
@@ -37,7 +37,8 @@ const TabBar = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ height: '100%', width: '100%' }}>
+      <StatusBar backgroundColor={COLOR.white} barStyle='default' />
+      <View style={styles.container}>
         {
           tabBar === 1 ? <Home /> : tabBar === 2 ? <Category /> : tabBar === 3 ? <Wishlist /> : <Profile />
         }
@@ -77,6 +78,7 @@ const TabBar = () => {
 export default TabBar
 
 const styles = StyleSheet.create({
+  container: { height: '100%', width: '100%', backgroundColor: COLOR.white },
   tabbarLandscape: { top: height - 70, width: '50%', alignSelf: 'center' },
   tabbarContainerWrap: { width: "100%", height: 70, borderRadius: 10, alignItems: "center", justifyContent: 'center', position: 'absolute' },
   tabbarcontainer: { width: "90%", height: 60, borderRadius: 18, backgroundColor: COLOR.light_grey, flexDirection: 'row', alignItems: 'center', elevation: 1 },
