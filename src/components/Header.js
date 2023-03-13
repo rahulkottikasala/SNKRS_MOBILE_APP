@@ -7,7 +7,10 @@ import SearchIcon from '../assets/icons/search-normal.png'
 import MenuIcon from '../assets/icons/menu.png'
 import { COLOR } from '../const/Color'
 
-const Header = ({ backBtn, title, bg }) => {
+
+
+
+const Header = ({ backBtn, title, bg , cart }) => {
     return (
         <View style={[styles.container, bg && {backgroundColor:bg}]}>
             {title && <View style={styles.headerTextContainer}>
@@ -26,9 +29,15 @@ const Header = ({ backBtn, title, bg }) => {
                 <TouchableOpacity style={styles.logoButton}>
                     <Image style={styles.logo} source={SearchIcon} />
                 </TouchableOpacity>
+                {cart?
+                  <TouchableOpacity style={styles.logoButton}>
+                  <Image style={styles.logo} source={HeartIcon} />
+              </TouchableOpacity>
+              :
                 <TouchableOpacity style={styles.logoButton}>
                     <Image style={styles.logo} source={CartIcon} />
                 </TouchableOpacity>
+                }
             </View>
         </View>
     )
