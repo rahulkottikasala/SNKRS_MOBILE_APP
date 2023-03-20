@@ -43,7 +43,7 @@ const TabBar = () => {
           tabBar === 1 ? <Home /> : tabBar === 2 ? <Category /> : tabBar === 3 ? <Wishlist /> : <Profile />
         }
       </View>
-      <View style={[styles.tabbarContainerWrap, orientation == 'landscape' && styles.tabbarLandscape, Platform.OS === 'ios' ? { bottom: 70 } : { bottom: 20 }]}>
+      <View style={[styles.tabbarContainerWrap, orientation == 'landscape' && styles.tabbarLandscape, Platform.OS === 'ios' ? { bottom: 70 } : { bottom: 10 }]}>
         <View style={[styles.tabbarcontainer, Platform.OS === 'ios' && { elevation: 20 }]}>
           <View style={styles.tabbarIconContainer}>
             <TouchableOpacity onPress={() => setTabBar(1)}>

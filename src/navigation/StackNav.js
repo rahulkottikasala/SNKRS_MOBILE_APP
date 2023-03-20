@@ -5,6 +5,7 @@ import ForgotPassword from '../screen/ForgotPassword'
 import Login from '../screen/Login'
 import Profile from '../screen/Profile'
 import Register from '../screen/Register'
+import SplashScreen from '../screen/SplashScreen'
 import Start from '../screen/Start'
 import ViewDetails from '../screen/ViewDetails'
 import Wishlist from '../screen/Wishlist'
@@ -13,6 +14,7 @@ import TabBar from './TabBar'
 const Stack = createStackNavigator()
 export const MyStack = () => (
   <Stack.Navigator>
+    <Stack.Screen name="SplashScreen" component={SplashScreen} options={{ headerShown: false }} />
     <Stack.Screen name="Start" component={Start} options={{ headerShown: false }} />
     <Stack.Screen name="Login" component={Login} options={{ headerShown: false }} />
     <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
