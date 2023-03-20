@@ -78,7 +78,7 @@ const ViewDetails = () => {
                 </View>
                 <View style={styles.button_container}>
                     {cart > 0 ?
-                        <AfterCart decrement={handleCartDec} increment={handleCartInc} count={cart} />
+                        <AfterCart decrement={handleCartDec} increment={handleCartInc} count={cart} color={COLOR.white} fontSize={25} />
                         : <BeforeCart addToCart={handleAddToCart} />}
                 </View>
             </View>
@@ -90,16 +90,16 @@ const ViewDetails = () => {
 
 export default ViewDetails
 
-const BeforeCart = ({ addToCart }) => (
+export const BeforeCart = ({ addToCart }) => (
     <TouchableOpacity style={styles.before_cart_button} onPress={addToCart}>
         <Text style={styles.before_cart_btn_text}>Add To Cart</Text>
     </TouchableOpacity>
 )
 
-const AfterCart = ({ increment, decrement, count }) => (
+export const AfterCart = ({ increment, decrement, count,color,fontSize }) => (
     <View style={styles.afterCartContainer}>
         <TouchableOpacity onPress={decrement} style={styles.count_dec_btn}><Text style={styles.count_btn_text}>-</Text></TouchableOpacity>
-        <View style={styles.item_count_view}><Text style={styles.count_text}>{count}</Text></View>
+        <View style={styles.item_count_view}><Text style={[styles.count_text, color={ color}, fontSize={fontSize}]}>{count}</Text></View>
         <TouchableOpacity onPress={increment} style={styles.count_inc_btn}><Text style={styles.count_btn_text}>+</Text></TouchableOpacity>
     </View>
 )
@@ -190,9 +190,9 @@ const styles = StyleSheet.create({
         color: COLOR.secondary
     },
     count_text: {
-        fontSize: 25,
+       
         fontFamily: "Lata-Bold",
-        color: COLOR.white
+      
     },
     product_image_container: {
         width: '100%',
