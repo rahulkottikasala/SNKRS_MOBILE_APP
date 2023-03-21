@@ -2,9 +2,9 @@ import { View, Text, StyleSheet, StatusBar } from 'react-native'
 import React from 'react'
 import { COLOR } from '../const/Color';
 import BackgroundImage from '../components/BackgroundImage';
-import { TitleName } from '../components/Auth/TitleName';
-import InputText from '../components/Auth/InputText';
-import Button from '../components/Auth/Button';
+import { TitleName } from '../components/auth/TitleName';
+import InputText from '../components/auth/InputText';
+import Button from '../components/auth/Button';
 
 const ForgotPassword = ({ navigation }) => {
   return (<>
