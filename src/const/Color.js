@@ -10,5 +10,6 @@ export const COLOR = {
     black:'#323232',
     dark:'#343434',
     lightGrey: 'lightgrey',
-    grey:'grey'
+    grey:'grey',
+    red:'#ff5252'
 }

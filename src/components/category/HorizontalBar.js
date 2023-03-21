@@ -13,21 +13,32 @@ export const HorizontalBar = () => (
         </View>
       </View>
       <ScrollView showsHorizontalScrollIndicator={false} horizontal style={styles.horizontalFilter}>
-        <View style={styles.horizontalFilterCard}><Text style={{ fontWeight: '700' }}>Adidas</Text></View>
-        <View style={styles.horizontalFilterCard}><Text style={{ fontWeight: '700' }}>Nike</Text></View>
-        <View style={styles.horizontalFilterCard}><Text style={{ fontWeight: '700' }}>Reebok</Text></View>
-        <View style={styles.horizontalFilterCard}><Text style={{ fontWeight: '700' }}>New Balance</Text></View>
+        <Item name={"Adidas"} />
+        <Item name={"Nike"} />
+        <Item name={"Reebook"} />
+        <Item name={"New Balance"} />
+        <Item name={"Puma"} />
+        <Item name={"Under Armour"} />
+        <Item name={"Ascis"} />
+        <Item name={"Jordan"} />
+        <Item name={"Skechers"} />
+        <Item name={"Converse"} />
+        <Item name={"Vans"} />
       </ScrollView>
     </View>
   )
   
+  const Item  = ({name}) => (
+    <View style={styles.horizontalFilterCard}><Text style={{ fontFamily:"Black", fontSize:12, color:COLOR.backgroundBlack }}>{name}</Text></View>
+
+  )
 
   const styles ={
-    horizontalFilterContainer: { height: 45, width: '100%', paddingLeft: 10, paddingRight: 20, flexDirection: 'row' },
+    horizontalFilterContainer: { height: 40, width: '100%', paddingLeft: 10, paddingRight: 10, flexDirection: 'row' },
     filterBox: { width: '18%', height: '100%', alignItems: 'center', },
     horizontalFilter: { width: '82%', height: '100%' },
-    filterImageContainer: { width: 45, height: 45, backgroundColor: COLOR.secondary, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
+    filterImageContainer: { width: 40, height: 40, backgroundColor: COLOR.secondary_shade, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },
     filterImage: { width: 27, height: 27 },
-    horizontalFilterCard: { height: 45, width: 100, marginRight: 10, backgroundColor: COLOR.secondary, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }
+    horizontalFilterCard: { height: 40, width: 100, marginRight: 10,borderWidth:1.5, borderColor: COLOR.secondary_shade, borderRadius: 10, alignItems: 'center', justifyContent: 'center' }
   }
   

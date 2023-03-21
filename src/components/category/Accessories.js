@@ -24,7 +24,7 @@ export const Accessories = () => (
     const Card = ({image, name}) => (
         <View style={styles.accCard}>
         <Image source={image} style={styles.cardImage} />
-        <Text style={styles.cartText}>{name}</Text>
+        <Text style={styles.cardText}>{name}</Text>
       </View>
     )
 
@@ -32,8 +32,8 @@ export const Accessories = () => (
     
 const styles = StyleSheet.create({
     acceContainer :{ width:'100%', paddingHorizontal:20,paddingTop:40, paddingBottom:10, backgroundColor:COLOR.white, marginTop:10, flexDirection:'row', flexWrap:'wrap', justifyContent:'space-between'},
-    acceTitle:{fontSize:20, fontFamily:'Lato-Bold', color:COLOR.black, position:'absolute',top:5, marginLeft:25 },
+    acceTitle:{fontSize:18, fontFamily:'Lato-Bold', color:COLOR.black, position:'absolute',top:5, marginLeft:25},
     accCard: {width:'48%', height:100, backgroundColor:'lightblue', marginBottom:10, borderRadius:10,overflow:'hidden',  backgroundColor:COLOR.secondary_shade, alignItems:'center', justifyContent:'center',},
     cardImage: { width:'100%', height:'100%',resizeMode:'cover',opacity:.8},
-    cartText : {fontSize:16, fontFamily:'Bold', position:'absolute',color:COLOR.black }
+    cardText : {fontSize:16, fontFamily:'Bold', position:'absolute',color:COLOR.black }
     })

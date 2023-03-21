@@ -8,6 +8,7 @@ import jordan from '../assets/dummy/jordan.png'
 const ViewDetails = () => {
     const navigation = useNavigation()
     const [cart, setCart] = useState(0)
+    const [sizeSts, setSizeSts] = useState(null)
     const handleBackNavigation = () => {
         navigation.pop()
     }
@@ -44,30 +45,21 @@ const ViewDetails = () => {
 
             {/* ------------Scroll View------------- */}
 
+
             <ScrollView style={styles.details_container}>
-                {/* image */}
                 <View style={styles.product_image_container}>
                     <Image style={styles.product_image} source={jordan} />
                 </View>
-                {/* product name */}
                 <View style={styles.product_name_container}>
                     <Text style={styles.product_type}>Mens Sneaker</Text>
                     <Text ellipsizeMode='tail' numberOfLines={2} style={styles.product_Name}>Air Jordan One High Top Model</Text>
                 </View>
-                {/* size */}
-                <View style={styles.size_container}>
-                    <Text style={styles.size_text}>Size : </Text>
-                    <View style={styles.productSizes}>
-                       {sizes?.map((item, i) => (
-
-                           <TouchableOpacity style={styles.productSize}>
-                            <Text style={styles.size_value_text}>{item.value}</Text>
-                        </TouchableOpacity>
-                            ))
-                        }
-                    </View>
-                </View>
+                <SizeSheet sizeSts={sizeSts} sizes={sizes} setSizeSts={setSizeSts} />
             </ScrollView>
+
+
+
+
             {/* -----------------END--------------- */}
 
             {/* --------Cart Count container-------- */}
@@ -102,6 +94,21 @@ const AfterCart = ({ increment, decrement, count }) => (
         <View style={styles.item_count_view}><Text style={styles.count_text}>{count}</Text></View>
         <TouchableOpacity onPress={increment} style={styles.count_inc_btn}><Text style={styles.count_btn_text}>+</Text></TouchableOpacity>
     </View>
+)
+
+const SizeSheet = ({sizeSts, sizes, setSizeSts}) => (
+    <View style={styles.size_container}>
+                    <Text style={styles.size_text}>Size : </Text>
+                    <View style={styles.productSizes}>
+                       {sizes?.map((item, i) => (
+
+                           <TouchableOpacity onPress={() => setSizeSts(item.id)} key={i} style={[styles.productSize,(item.id === sizeSts) && {backgroundColor:COLOR.secondary} ]}>
+                            <Text style={styles.size_value_text}>{item.value}</Text>
+                        </TouchableOpacity>
+                            ))
+                        }
+                    </View>
+                </View>
 )
 
 const styles = StyleSheet.create({
