@@ -15,7 +15,11 @@ const Register = ({ navigation }) => {
 
   return (
     <>
-      <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='default' />
+      {
+      isDark ?
+        <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
+        : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
+    }
       <BackgroundImage>
         <View style={styles.container}>
           <TitleName name={"Register"} />
