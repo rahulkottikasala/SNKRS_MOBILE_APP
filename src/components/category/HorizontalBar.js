@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ToastAndroid } from 'react-native'
 import React from 'react'
 import { ScrollView } from 'react-native-gesture-handler'
 import filter from '../../assets/icons/filter.png'
@@ -29,7 +29,7 @@ export const HorizontalBar = () => (
   )
   
   const Item  = ({name}) => (
-    <View style={styles.horizontalFilterCard}><Text style={{ fontFamily:"Black", fontSize:12, color:COLOR.backgroundBlack }}>{name}</Text></View>
+    <TouchableOpacity  onPress={() => ToastAndroid.showWithGravity('Under Construction',ToastAndroid.SHORT,ToastAndroid.BOTTOM,)} style={styles.horizontalFilterCard}><Text style={{ fontFamily:"Black", fontSize:12, color:COLOR.backgroundBlack }}>{name}</Text></TouchableOpacity>
 
   )
 

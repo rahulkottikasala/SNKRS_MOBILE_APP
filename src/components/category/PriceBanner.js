@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, ToastAndroid } from 'react-native'
 import React from 'react'
 import { COLOR } from '../../const/Color'
 
 export const PriceBanner = () => {
   return (
     <View style={styles.container}>
-     <TouchableOpacity style={styles.bannerContainer}>
+     <TouchableOpacity  onPress={() => ToastAndroid.showWithGravity('Under Construction',ToastAndroid.SHORT,ToastAndroid.BOTTOM,)} style={styles.bannerContainer}>
         <Text style={styles.bannerTitle}>BIG SUPER SALE !</Text>
         <View style={styles.wrap}>
 
@@ -24,14 +24,13 @@ export const PriceBanner = () => {
         </View>
 
         </View>
-        {/* <Text style={styles.bannerTitle}>BIG SUPER SALE </Text> */}
      </TouchableOpacity>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
-container:{ height:160, width:'100%', marginTop:10,paddingHorizontal:5,},
+container:{ height:160, width:'100%', marginTop:10,paddingHorizontal:10,},
 bannerContainer: { height:'100%', width:'100%', backgroundColor:COLOR.red, borderRadius:10, padding:10, justifyContent:'space-around'},
 bannerTitle: { fontSize:16, fontFamily:'Lato Black',alignSelf:'center', fontWeight:'900', color:COLOR.white},
 wrap:{flexDirection:'row', justifyContent:'space-between', alignItems:'center'},

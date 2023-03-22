@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, ToastAndroid } from 'react-native'
 import React from 'react'
 import { COLOR } from '../../const/Color'
 import High from '../../assets/dummy/jordan.png'
@@ -23,10 +23,10 @@ export const Types = () =>
 
 
   const Ball = ({image, name}) => (
-    <View style={styles.ballContainer}>
+    <TouchableOpacity onPress={() => ToastAndroid.showWithGravity('Under Construction',ToastAndroid.SHORT,ToastAndroid.BOTTOM,)} style={styles.ballContainer}>
       <Text style={styles.label}>{name}</Text>
       <Image source={image} style={styles.image}/>
-    </View>
+    </TouchableOpacity>
   )
 
   const styles = StyleSheet.create({

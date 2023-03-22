@@ -8,6 +8,7 @@ import { Accessories } from '../components/category/Accessories'
 import { Types } from '../components/category/Types'
 import { PriceBanner } from '../components/category/PriceBanner'
 import ViewHeight from '../components/ViewHeight'
+import { MidBanner } from '../components/category/MidBanner'
 
 
 
@@ -20,6 +21,7 @@ const Category = () => {
         <PriceBanner />
         <Types />
         <Accessories />
+        <MidBanner/>
         <ViewHeight />
       </ScrollView>
     </ScrollView>
