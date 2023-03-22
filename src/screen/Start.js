@@ -1,17 +1,24 @@
 import { View, Text, StyleSheet, StatusBar, Image, TouchableOpacity, useColorScheme } from 'react-native'
-import React, {useContext} from 'react'
+import React, { useContext } from 'react'
 import { COLOR } from '../const/Color';
 import BackgroundImage from '../components/BackgroundImage';
 import StartImage from '../assets/images/start.png';
 
 const Start = ({ navigation }) => {
 
+  const isDark = useColorScheme() === 'dark'
+
   return (<>
-    <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='default' />
-    <BackgroundImage>
+    {
+      isDark ?
+        <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
+        : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
+    }
+    
+    <BackgroundImage >
       <View style={styles.container}>
-        <Text style={styles.title}>Choose Your {'\n'} Favourite <Text style={{ color: COLOR.primary }}>Sneaker</Text></Text>
-        <Text style={styles.subTitle}>Sneaker collection with premium quality,
+        <Text style={[styles.title, isDark && {color:COLOR.white}]}>Choose Your {'\n'} Favourite <Text style={{ color: COLOR.primary }}>Sneaker</Text></Text>
+        <Text style={[styles.subTitle, isDark && {color:COLOR.white}]}>Sneaker collection with premium quality,
           minimalist and limited edition</Text>
         <Image style={styles.image} source={StartImage} />
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("Login")}>
@@ -36,7 +43,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: 'Bold',
-    color: COLOR.white,
+    color: COLOR.backgroundBlack,
     fontSize: 30,
     textAlign: 'center',
     marginBottom: 20
@@ -45,7 +52,7 @@ const styles = StyleSheet.create({
     fontFamily: 'SemiBold',
     fontSize: 16,
     textAlign: 'center',
-    color: COLOR.white
+    color: COLOR.backgroundBlack
   },
   image: {
     width: '60%',
