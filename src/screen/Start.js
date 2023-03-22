@@ -1,10 +1,11 @@
-import { View, Text, StyleSheet, StatusBar, Image, TouchableOpacity } from 'react-native'
-import React from 'react'
+import { View, Text, StyleSheet, StatusBar, Image, TouchableOpacity, useColorScheme } from 'react-native'
+import React, {useContext} from 'react'
 import { COLOR } from '../const/Color';
 import BackgroundImage from '../components/BackgroundImage';
 import StartImage from '../assets/images/start.png';
 
 const Start = ({ navigation }) => {
+
   return (<>
     <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='default' />
     <BackgroundImage>
@@ -32,7 +33,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-
   },
   title: {
     fontFamily: 'Bold',
