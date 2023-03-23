@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, StatusBar, Dimensions, useColorScheme } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, Dimensions, useColorScheme, Vibration,ToastAndroid } from 'react-native'
 import React from 'react'
 import { COLOR } from '../const/Color'
 import { Header } from '../components/profile/Header'
@@ -6,10 +6,18 @@ import { ScrollView } from 'react-native-gesture-handler'
 import { ProfileCard } from '../components/profile/ProfileCard'
 import ViewHeight from '../components/ViewHeight'
 import Button from '../components/auth/Button'
+import { useNavigation } from '@react-navigation/native'
 const { height, width } = Dimensions.get('window')
 
-const Profile = () => {
+const Profile = ({}) => {
   const isDark = useColorScheme() === 'dark'
+  const navigation =  useNavigation()
+
+  const handleLogout = () => {
+    Vibration.vibrate(100)
+    ToastAndroid.showWithGravity('Logout Successfully Completed',ToastAndroid.LONG,ToastAndroid.BOTTOM,)
+    navigation.navigate('Login')
+  }
   return (
          <ScrollView showsVerticalScrollIndicator={false}> 
     <View style={styles.container}>
@@ -22,7 +30,7 @@ const Profile = () => {
           <ProfileCard isDark={isDark} name={"Payment Method"} />
           <ProfileCard isDark={isDark} name={"Help"} />
           <ProfileCard isDark={isDark} name={"About Us"} />
-          <Button padZero defFont btnName={"LOGOUT"}/>
+          <Button action={handleLogout} padZero defFont btnName={"LOGOUT"}/>
       </View>
     </View>
           <ViewHeight />

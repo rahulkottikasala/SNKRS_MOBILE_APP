@@ -15,17 +15,17 @@ import { MidBanner } from '../components/category/MidBanner'
 const Category = () => {
   const isDark = useColorScheme() === 'dark';
   return (
-    <ScrollView style={{flex :1}}>
-      <ScrollView>
+    <View style={{flex :1}}>
         <Header />
         <HorizontalBar isDark={isDark} />
+      <ScrollView showsVerticalScrollIndicator={false}>
         <PriceBanner />
         <Types />
         <Accessories isDark={isDark} />
         <MidBanner isDark={isDark} />
         <ViewHeight />
       </ScrollView>
-    </ScrollView>
+    </View>
   )
 }
 

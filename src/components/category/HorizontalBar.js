@@ -34,7 +34,7 @@ export const HorizontalBar = ({isDark}) => (
   )
 
   const styles ={
-    horizontalFilterContainer: { height: 40, width: '100%', paddingLeft: 10, paddingRight: 10, flexDirection: 'row' },
+    horizontalFilterContainer: { height: 40, width: '100%', paddingLeft: 10, paddingRight: 10,marginBottom:10, flexDirection: 'row' },
     filterBox: { width: '18%', height: '100%', alignItems: 'center', },
     horizontalFilter: { width: '82%', height: '100%' },
     filterImageContainer: { width: 40, height: 40, backgroundColor: COLOR.secondary_shade, borderRadius: 10, alignItems: 'center', justifyContent: 'center' },

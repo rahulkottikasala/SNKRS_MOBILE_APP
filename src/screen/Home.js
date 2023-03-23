@@ -25,8 +25,8 @@ const Home = () => {
 
   return (
     <View style={[styles.container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
-      <ScrollView>
         <Header />
+      <ScrollView>
         <WelcomeText isDark={isDark} />
         <OfferBanner />
         <CategoryTab isDark={isDark} index={categoryTabIndex} setIndex={setCategoryTabIndex} />

@@ -30,7 +30,7 @@ export const PriceBanner = () => {
 }
 
 const styles = StyleSheet.create({
-container:{ height:160, width:'100%', marginTop:20,paddingHorizontal:10,},
+container:{ height:160, width:'100%', marginTop:10,paddingHorizontal:10,},
 bannerContainer: { height:'100%', width:'100%', backgroundColor:COLOR.red, borderRadius:10, padding:10, justifyContent:'space-around'},
 bannerTitle: { fontSize:16, fontFamily:'Lato Black',alignSelf:'center', fontWeight:'900', color:COLOR.white},
 wrap:{flexDirection:'row', justifyContent:'space-between', alignItems:'center'},

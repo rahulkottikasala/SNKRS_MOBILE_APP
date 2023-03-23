@@ -4,6 +4,8 @@ import { COLOR } from '../const/Color'
 import Header from '../components/Header'
 import { useNavigation } from '@react-navigation/native'
 import jordan from '../assets/dummy/jordan.png'
+import ViewIcon  from '../assets/icons/view.png'
+import ViewIconW  from '../assets/icons/view-w.png'
 
 const ViewDetails = () => {
     const isDark = useColorScheme() === 'dark';
@@ -44,13 +46,16 @@ const ViewDetails = () => {
             {
                 isDark ?
                     <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
-                    : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
+                    : <StatusBar backgroundColor={COLOR.secondary_shade} barStyle='dark-content' />
             }
             <Header backBtn={handleBackNavigation} bg={isDark ? COLOR.backgroundBlack : COLOR.secondary_shade} />
 
             {/* ------------Scroll View------------- */}
             <ScrollView style={[styles.details_container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
                 <View style={[styles.product_image_container, isDark && { backgroundColor: COLOR.black }]}>
+                    <TouchableOpacity onPress={() => ToastAndroid.showWithGravity('Under Construction',ToastAndroid.SHORT,ToastAndroid.BOTTOM,)} style={{width:25, height:25,position:'absolute', bottom:20, right:20}} >
+                        <Image source={isDark ? ViewIconW : ViewIcon} style={{width:'100%', height:'100%', resizeMode:'contain'}} />
+                    </TouchableOpacity>
                     <Image style={styles.product_image} source={jordan} />
                 </View>
                 <View style={styles.product_name_container}>
@@ -156,7 +161,8 @@ const styles = StyleSheet.create({
     },
     current_price: {
         fontSize: 16,
-        textDecorationLine: 'line-through'
+        color:COLOR.lightGrey,
+        textDecorationLine: 'line-through',
     },
     button_container: {
         width: '50%',
@@ -218,7 +224,7 @@ const styles = StyleSheet.create({
     },
     product_image_container: {
         width: '100%',
-        height: 280,
+        height: 250,
         backgroundColor: COLOR.secondary_shade,
         alignItems: 'center',
         justifyContent: "center"
