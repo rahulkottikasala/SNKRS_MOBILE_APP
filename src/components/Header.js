@@ -1,13 +1,19 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Image, useColorScheme } from 'react-native'
 import React from 'react'
 import ArrowLeft from '../assets/icons/arrow-left.png'
 import HeartIcon from '../assets/icons/heart.png'
 import CartIcon from '../assets/icons/shopping-cart.png'
 import SearchIcon from '../assets/icons/search-normal.png'
 import MenuIcon from '../assets/icons/menu.png'
+import ArrowLeftW from '../assets/icons/arrow-left-w.png'
+import HeartIconW from '../assets/icons/heart-w.png'
+import CartIconW from '../assets/icons/shopping-cart-w.png'
+import SearchIconW from '../assets/icons/search-normal-w.png'
+import MenuIconW from '../assets/icons/menu-w.png'
 import { COLOR } from '../const/Color'
 
 const Header = ({ backBtn, title, bg }) => {
+    const isDark = useColorScheme()==='dark';
     return (
         <View style={[styles.container, bg && {backgroundColor:bg}]}>
             {title && <View style={styles.headerTextContainer}>
@@ -15,19 +21,27 @@ const Header = ({ backBtn, title, bg }) => {
             </View>}
             {backBtn ?
                 <TouchableOpacity style={styles.logoButton} onPress={() => backBtn()}>
-                    <Image style={styles.logo} source={ArrowLeft} />
+                     { isDark ? 
+                    <Image style={styles.logo} source={ArrowLeftW} />
+                    :<Image style={styles.logo} source={ArrowLeft} />}
                 </TouchableOpacity>
                 : <TouchableOpacity style={styles.logoButton}>
-                    <Image style={styles.logo} source={MenuIcon} />
+                   { isDark ? 
+                    <Image style={styles.logo} source={MenuIconW} />
+                    :<Image style={styles.logo} source={MenuIcon} />}
                 </TouchableOpacity>
             }
             <View style={styles.rightIconGrp}>
 
                 <TouchableOpacity style={styles.logoButton}>
-                    <Image style={styles.logo} source={SearchIcon} />
+                { isDark ? 
+                    <Image style={styles.logo} source={SearchIconW} />
+                    :<Image style={styles.logo} source={SearchIcon} />}
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.logoButton}>
-                    <Image style={styles.logo} source={CartIcon} />
+                { isDark ? 
+                    <Image style={styles.logo} source={CartIconW} />
+                    :<Image style={styles.logo} source={CartIcon} />}
                 </TouchableOpacity>
             </View>
         </View>

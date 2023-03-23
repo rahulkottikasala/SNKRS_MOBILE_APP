@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image, useColorScheme } from 'react-native'
 import React from 'react'
 import Header from '../components/Header'
 import { ScrollView } from 'react-native-gesture-handler'
@@ -13,15 +13,16 @@ import { MidBanner } from '../components/category/MidBanner'
 
 
 const Category = () => {
+  const isDark = useColorScheme() === 'dark';
   return (
     <ScrollView style={{flex :1}}>
       <ScrollView>
         <Header />
-        <HorizontalBar />
+        <HorizontalBar isDark={isDark} />
         <PriceBanner />
         <Types />
-        <Accessories />
-        <MidBanner/>
+        <Accessories isDark={isDark} />
+        <MidBanner isDark={isDark} />
         <ViewHeight />
       </ScrollView>
     </ScrollView>

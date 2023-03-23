@@ -2,9 +2,9 @@ import { View, Text, StyleSheet, ImageBackground } from 'react-native'
 import React from 'react'
 import { COLOR } from '../../const/Color'
 
-export const MidBanner = () => {
+export const MidBanner = ({isDark}) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, isDark && {backgroundColor:COLOR.black}]}>
             <Block tag={"sneakers"} />
             <Block tag={"white"} />
             <Block tag={"leather"} />
@@ -24,7 +24,7 @@ const Block = ({ tag }) => (
 )
 
 const styles = StyleSheet.create({
-    container: { width: '100%', backgroundColor: COLOR.white, paddingHorizontal: 10, paddingVertical: 10, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' },
+    container: { width: '100%', backgroundColor: COLOR.secondary_alpha, paddingHorizontal: 10, paddingVertical: 10, flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' },
     block: { height: 30, width: '22%', borderRadius: 10, backgroundColor: COLOR.secondary_shade, marginRight: 5, marginBottom: 10, justifyContent: "center", alignItems: 'center' },
     hashtag: { fontSize: 10, color: COLOR.backgroundBlack, fontFamily: 'SemiBold' }
 })

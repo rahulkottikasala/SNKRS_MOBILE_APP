@@ -2,15 +2,15 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { COLOR } from '../../const/Color'
 
-export const Card = ({ cardImage, action }) => (
+export const Card = ({ isDark, cardImage, action }) => (
 
   <TouchableOpacity style={styles.card} onPress={action ? action : console.log("clicked")}>
-    <View style={styles.image_container}>
+    <View style={[styles.image_container, isDark && {backgroundColor:COLOR.black}]}>
       <View style={styles.label}><Text style={styles.labelText}>40% OFF</Text></View>
       {cardImage && <Image style={styles.image} source={cardImage} />}
     </View>
     <View style={styles.info_container}>
-      <Text numberOfLines={2} ellipsizeMode='tail' style={styles.product_name}>Converse All Star Sneakers </Text>
+      <Text numberOfLines={2} ellipsizeMode='tail' style={[styles.product_name, isDark && {color:COLOR.secondary_alpha}]}>Converse All Star Sneakers </Text>
       <View style={styles.price_container}>
         <Text style={styles.offer_price}>$180.00</Text>
         <Text style={styles.current_price}>$200.70</Text>

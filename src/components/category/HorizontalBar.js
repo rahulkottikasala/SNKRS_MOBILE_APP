@@ -5,7 +5,7 @@ import filter from '../../assets/icons/filter.png'
 import { COLOR } from '../../const/Color'
 
 
-export const HorizontalBar = () => (
+export const HorizontalBar = ({isDark}) => (
     <View style={styles.horizontalFilterContainer}>
       <View style={styles.filterBox}>
         <View style={styles.filterImageContainer}>
@@ -13,23 +13,23 @@ export const HorizontalBar = () => (
         </View>
       </View>
       <ScrollView showsHorizontalScrollIndicator={false} horizontal style={styles.horizontalFilter}>
-        <Item name={"Adidas"} />
-        <Item name={"Nike"} />
-        <Item name={"Reebook"} />
-        <Item name={"New Balance"} />
-        <Item name={"Puma"} />
-        <Item name={"Under Armour"} />
-        <Item name={"Ascis"} />
-        <Item name={"Jordan"} />
-        <Item name={"Skechers"} />
-        <Item name={"Converse"} />
-        <Item name={"Vans"} />
+        <Item isDark={isDark} name={"Adidas"} />
+        <Item isDark={isDark} name={"Nike"} />
+        <Item isDark={isDark} name={"Reebook"} />
+        <Item isDark={isDark} name={"New Balance"} />
+        <Item isDark={isDark} name={"Puma"} />
+        <Item isDark={isDark} name={"Under Armour"} />
+        <Item isDark={isDark} name={"Ascis"} />
+        <Item isDark={isDark} name={"Jordan"} />
+        <Item isDark={isDark} name={"Skechers"} />
+        <Item isDark={isDark} name={"Converse"} />
+        <Item isDark={isDark} name={"Vans"} />
       </ScrollView>
     </View>
   )
   
-  const Item  = ({name}) => (
-    <TouchableOpacity  onPress={() => ToastAndroid.showWithGravity('Under Construction',ToastAndroid.SHORT,ToastAndroid.BOTTOM,)} style={styles.horizontalFilterCard}><Text style={{ fontFamily:"Black", fontSize:12, color:COLOR.backgroundBlack }}>{name}</Text></TouchableOpacity>
+  const Item  = ({name, isDark}) => (
+    <TouchableOpacity  onPress={() => ToastAndroid.showWithGravity('Under Construction',ToastAndroid.SHORT,ToastAndroid.BOTTOM,)} style={styles.horizontalFilterCard}><Text style={[{ fontFamily:"Black", fontSize:12, color:COLOR.backgroundBlack }, isDark && {color:COLOR.secondary_alpha}]}>{name}</Text></TouchableOpacity>
 
   )
 

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, useColorScheme, StatusBar } from 'react-native'
 import React, { useState } from 'react'
 import Header from '../components/Header'
 import { COLOR } from '../const/Color'
@@ -14,6 +14,8 @@ import { useNavigation } from '@react-navigation/native'
 
 const Home = () => {
 
+  const isDark = useColorScheme() === 'dark';
+
   const navigation = useNavigation()
   const [categoryTabIndex, setCategoryTabIndex] = useState(1)
 
@@ -22,21 +24,21 @@ const Home = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
       <ScrollView>
         <Header />
-        <WelcomeText />
+        <WelcomeText isDark={isDark} />
         <OfferBanner />
-        <CategoryTab index={categoryTabIndex} setIndex={setCategoryTabIndex} />
+        <CategoryTab isDark={isDark} index={categoryTabIndex} setIndex={setCategoryTabIndex} />
         <View style={styles.product_list}>
           {/* -----card----- */}
 
-          <Card action={handleViewDetails} cardImage={jordan} />
-          <Card action={handleViewDetails} cardImage={force1White} />
-          <Card action={handleViewDetails} cardImage={jordan} />
-          <Card action={handleViewDetails} cardImage={force1Red} />
-          <Card action={handleViewDetails} cardImage={converse} />
-          <Card action={handleViewDetails} cardImage={force1White} />
+          <Card isDark={isDark} action={handleViewDetails} cardImage={jordan} />
+          <Card isDark={isDark} action={handleViewDetails} cardImage={force1White} />
+          <Card isDark={isDark} action={handleViewDetails} cardImage={jordan} />
+          <Card isDark={isDark} action={handleViewDetails} cardImage={force1Red} />
+          <Card isDark={isDark} action={handleViewDetails} cardImage={converse} />
+          <Card isDark={isDark} action={handleViewDetails} cardImage={force1White} />
         </View>
         <ViewHeight />
       </ScrollView>
@@ -48,14 +50,14 @@ export default Home
 
 
 
-const CategoryTab = ({ index, setIndex }) => (
+const CategoryTab = ({isDark, index, setIndex }) => (
   <View style={styles.categoryTabContainer}>
-    <View style={styles.categoryTab}>
-      <TouchableOpacity onPress={() => setIndex(0)} style={[styles.categoryTabItem, index === 0 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 0 && styles.categoryTabItemTextActive]}>All</Text></TouchableOpacity>
-      <TouchableOpacity onPress={() => setIndex(1)} style={[styles.categoryTabItem, index === 1 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 1 && styles.categoryTabItemTextActive]}>Men</Text></TouchableOpacity>
-      <TouchableOpacity onPress={() => setIndex(2)} style={[styles.categoryTabItem, index === 2 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 2 && styles.categoryTabItemTextActive]}>Women</Text></TouchableOpacity>
-      <TouchableOpacity onPress={() => setIndex(3)} style={[styles.categoryTabItem, index === 3 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 3 && styles.categoryTabItemTextActive]}>Boy</Text></TouchableOpacity>
-      <TouchableOpacity onPress={() => setIndex(4)} style={[styles.categoryTabItem, index === 4 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 4 && styles.categoryTabItemTextActive]}>Girl</Text></TouchableOpacity>
+    <View style={[styles.categoryTab, isDark && {borderColor:COLOR.primary}]}>
+      <TouchableOpacity onPress={() => setIndex(0)} style={[styles.categoryTabItem, index === 0 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 0 && styles.categoryTabItemTextActive, isDark && index === 0 && {color:COLOR.primary}]}>All</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => setIndex(1)} style={[styles.categoryTabItem, index === 1 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 1 && styles.categoryTabItemTextActive, isDark && index === 1 && {color:COLOR.primary}]}>Men</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => setIndex(2)} style={[styles.categoryTabItem, index === 2 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 2 && styles.categoryTabItemTextActive, isDark && index === 2 && {color:COLOR.primary}]}>Women</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => setIndex(3)} style={[styles.categoryTabItem, index === 3 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 3 && styles.categoryTabItemTextActive, isDark && index === 3 && {color:COLOR.primary}]}>Boy</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => setIndex(4)} style={[styles.categoryTabItem, index === 4 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 4 && styles.categoryTabItemTextActive, isDark && index === 4 && {color:COLOR.primary}]}>Girl</Text></TouchableOpacity>
       <View style={styles.categoryTabItem}></View>
     </View>
   </View>
@@ -65,6 +67,7 @@ const CategoryTab = ({ index, setIndex }) => (
 
 
 const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: COLOR.white },
   categoryTabItemActive: { borderBottomWidth: 1 },
 
   //Category Tab 

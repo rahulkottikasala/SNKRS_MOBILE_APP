@@ -30,12 +30,12 @@ export const Header = () => {
 
 const styles = StyleSheet.create({
     headerContainer: { width: '100%', height: 200, backgroundColor: COLOR.backgroundBlack, flexDirection: 'row',},
-    headerContainerWrap: { width: '100%', height: 200, flexDirection: 'row',opacity:.05, position:'absolute'},
+    headerContainerWrap: { width: '100%', height: 200, flexDirection: 'row',opacity:.06, position:'absolute'},
     imageContainer: { width: '40%', height: '100%', alignItems: 'flex-end', justifyContent: 'center' },
     imageWrap: { height: 140, width: 140, justifyContent: "center", alignItems: 'center', overflow: 'hidden', },
     image: { height: 120, width: 120, borderRadius: 120,borderWidth:1, borderColor:'#fff' ,backgroundColor: COLOR.secondary_alpha, resizeMode: "contain", overflow: 'hidden' },
     imageEdit: { position: 'absolute', bottom: 10, right: 10, width: 50, height: 20, borderRadius: 10, backgroundColor: COLOR.primary, alignItems: 'center', justifyContent: 'center', },
-    imageEditText: { fontSize: 10, fontFamily: 'Lato-Black', color: COLOR.backgroundBlack },
+    imageEditText: { fontSize: 10, fontFamily: 'Lato-Black', color: COLOR.white },
     textContainer: { width: '60%', height: '100%', paddingHorizontal: 20, justifyContent: 'center', paddingTop: 10 },
     name: { fontSize: 20, fontFamily: 'Lato-Black', marginBottom: 6, color: COLOR.secondary_alpha },
     email: { fontSize: 12, fontFamily: 'Lato-Bold', marginBottom: 6, color: COLOR.secondary_alpha, opacity: .6 },
