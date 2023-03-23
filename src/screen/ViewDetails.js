@@ -1,17 +1,21 @@
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity, ScrollView, Image, useColorScheme,ToastAndroid } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, ScrollView, Image, useColorScheme, ToastAndroid } from 'react-native'
 import React, { useState } from 'react'
 import { COLOR } from '../const/Color'
 import Header from '../components/Header'
 import { useNavigation } from '@react-navigation/native'
 import jordan from '../assets/dummy/jordan.png'
-import ViewIcon  from '../assets/icons/view.png'
-import ViewIconW  from '../assets/icons/view-w.png'
+import ViewIcon from '../assets/icons/view.png'
+import ViewIconW from '../assets/icons/view-w.png'
+import DeliveryAddress from '../components/product_details/DeliveryAddress'
+import ViewHeight from '../components/ViewHeight'
 
 const ViewDetails = () => {
     const isDark = useColorScheme() === 'dark';
     const navigation = useNavigation()
     const [cart, setCart] = useState(0)
     const [sizeSts, setSizeSts] = useState(3)
+    const [outOfStock, setOutOfStock] = useState(false)
+
     const handleBackNavigation = () => {
         navigation.pop()
     }
@@ -53,8 +57,8 @@ const ViewDetails = () => {
             {/* ------------Scroll View------------- */}
             <ScrollView style={[styles.details_container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
                 <View style={[styles.product_image_container, isDark && { backgroundColor: COLOR.black }]}>
-                    <TouchableOpacity onPress={() => ToastAndroid.showWithGravity('Under Construction',ToastAndroid.SHORT,ToastAndroid.BOTTOM,)} style={{width:25, height:25,position:'absolute', bottom:20, right:20}} >
-                        <Image source={isDark ? ViewIconW : ViewIcon} style={{width:'100%', height:'100%', resizeMode:'contain'}} />
+                    <TouchableOpacity onPress={() => ToastAndroid.showWithGravity('Under Construction', ToastAndroid.SHORT, ToastAndroid.BOTTOM,)} style={{ width: 25, height: 25, position: 'absolute', bottom: 20, right: 20 }} >
+                        <Image source={isDark ? ViewIconW : ViewIcon} style={{ width: '100%', height: '100%', resizeMode: 'contain' }} />
                     </TouchableOpacity>
                     <Image style={styles.product_image} source={jordan} />
                 </View>
@@ -62,7 +66,12 @@ const ViewDetails = () => {
                     <Text style={[styles.product_type, isDark && { color: COLOR.secondary_alpha }]}>Mens Sneaker</Text>
                     <Text ellipsizeMode='tail' numberOfLines={2} style={[styles.product_Name, isDark && { color: COLOR.secondary_alpha }]}>Air Jordan One High Top Model</Text>
                 </View>
-                <SizeSheet isDark={isDark} sizeSts={sizeSts} sizes={sizes} setSizeSts={setSizeSts} />
+                <SizeSheet setOutOfStock={setOutOfStock} isDark={isDark} sizeSts={sizeSts} sizes={sizes} setSizeSts={setSizeSts} />
+
+                <DeliveryAddress isDark={isDark} />
+
+
+                <ViewHeight />
             </ScrollView>
 
             {/* -----------------END--------------- */}
@@ -74,9 +83,9 @@ const ViewDetails = () => {
                     <Text style={styles.offer_price}>${cart > 0 ? 180.00 * cart : 180.00}    <Text style={styles.current_price}>${cart > 0 ? 230.00 * cart : 230.00}</Text></Text>
                 </View>
                 <View style={styles.button_container}>
-                    {cart > 0 ?
+                    {cart > 0 && !outOfStock ?
                         <AfterCart decrement={handleCartDec} increment={handleCartInc} count={cart} />
-                        : <BeforeCart addToCart={handleAddToCart} />}
+                        : <BeforeCart outOfStock={outOfStock} addToCart={handleAddToCart} />}
                 </View>
             </View>
             {/* ---------------END------------------ */}
@@ -87,9 +96,9 @@ const ViewDetails = () => {
 
 export default ViewDetails
 
-const BeforeCart = ({ addToCart }) => (
+const BeforeCart = ({ addToCart, outOfStock }) => (
     <TouchableOpacity style={styles.before_cart_button} onPress={addToCart}>
-        <Text style={styles.before_cart_btn_text}>Add To Cart</Text>
+        <Text style={styles.before_cart_btn_text}>{outOfStock ? "Out of stock" : "Add To Cart"}</Text>
     </TouchableOpacity>
 )
 
@@ -101,7 +110,7 @@ const AfterCart = ({ increment, decrement, count }) => (
     </View>
 )
 
-const SizeSheet = ({ isDark, sizeSts, sizes, setSizeSts }) => (
+const SizeSheet = ({ isDark, sizeSts, sizes, setSizeSts, setOutOfStock }) => (
     <View style={styles.size_container}>
         <Text style={[styles.size_text, isDark && { color: COLOR.secondary_alpha, opacity: .8 }]}>Size : </Text>
         <View style={styles.productSizes}>
@@ -109,20 +118,15 @@ const SizeSheet = ({ isDark, sizeSts, sizes, setSizeSts }) => (
 
                 <TouchableOpacity onPress={() => {
                     setSizeSts(item.id)
-                    if(item?.qnty < 1){
-                        ToastAndroid.showWithGravity('Out Of Stock',ToastAndroid.LONG,ToastAndroid.BOTTOM,)
+                    if (item?.qnty < 1) {
+                        setOutOfStock(true)
+                        ToastAndroid.showWithGravity('Out Of Stock', ToastAndroid.LONG, ToastAndroid.BOTTOM,)
 
-                        //default size
-                        // setTimeout(() => {
-                        //     setSizeSts(3)
-                        // },2000)
-
+                    } else {
+                        setOutOfStock(false)
                     }
-                }} key={i} style={[styles.productSize, (item.id === sizeSts) && !(item?.qnty < 1) && { backgroundColor: COLOR.primary, borderWidth:0 }, isDark && !(item?.qnty < 1)  && { borderColor: COLOR.primary }]}>
-                    <Text style={[styles.size_value_text, isDark && { color: COLOR.secondary_alpha, opacity: .5 }, (item.id === sizeSts) && { color: COLOR.secondary_alpha, opacity: 1 }, (item?.qnty < 1) && { color: COLOR.grey, opacity: 1 }]}>{item.value}</Text>
-                    {item?.qnty < 1 && <><View style={[{ width: '100%', height: 1, backgroundColor: COLOR.grey, position: 'absolute', top: 16, transform: [{ rotate: '33deg' }] }, isDark && {backgroundColor:COLOR.black}]} />
-                        <View style={[{ width: '100%', height: 1, backgroundColor: COLOR.grey, position: 'absolute', top: 16, transform: [{ rotate: '-33deg' }] }, isDark && {backgroundColor:COLOR.black}]} />
-                    </>}
+                }} key={i} style={[styles.productSize, (item.id === sizeSts) && { backgroundColor: COLOR.primary, borderWidth: 0 }, !(item.id === sizeSts) && !isDark && (item.qnty < 1) && { borderWidth: 0, backgroundColor: COLOR.light_grey }, isDark && !(item.qnty < 1) && { borderColor: COLOR.primary }]}>
+                    <Text style={[styles.size_value_text, isDark && { color: COLOR.secondary_alpha, opacity: .5 }, (item.id === sizeSts) && { color: COLOR.secondary_alpha, opacity: 1 }]}>{item.value}</Text>
                 </TouchableOpacity>
             ))
             }
@@ -161,7 +165,7 @@ const styles = StyleSheet.create({
     },
     current_price: {
         fontSize: 16,
-        color:COLOR.lightGrey,
+        color: COLOR.lightGrey,
         textDecorationLine: 'line-through',
     },
     button_container: {
