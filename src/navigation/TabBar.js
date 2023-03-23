@@ -1,13 +1,17 @@
-import { View, Text, TouchableOpacity, Dimensions, Image, Platform, StyleSheet, StatusBar } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, Image, Platform, StyleSheet, StatusBar, useColorScheme } from 'react-native'
 import React, { useContext, useState } from 'react'
 import { COLOR } from '../const/Color'
 import HomeIcon from '../assets/icons/home.png'
+import HomeIconW from '../assets/icons/home-w.png'
 import HomeActive from '../assets/icons/home_active.png'
 import CategoryIcon from '../assets/icons/category.png'
+import CategoryIconW from '../assets/icons/grid-w.png'
 import CategoryActive from '../assets/icons/category_active.png'
 import HeartIcon from '../assets/icons/heart.png'
+import HeartIconW from '../assets/icons/heart-w.png'
 import HeartActive from '../assets/icons/heart_active.png'
 import UserIcon from '../assets/icons/user.png'
+import UserIconW from '../assets/icons/user-w.png'
 import UserActive from '../assets/icons/user_active.png'
 import Home from '../screen/Home'
 import Category from '../screen/Category'
@@ -25,6 +29,7 @@ const isPortrait = () => {
 
 
 const TabBar = () => {
+  const isDark = useColorScheme()==='dark'
   const [tabBar, setTabBar] = useState(1)
   const [screenWidth, setScreenWidth] = useState(width);
   const [orientation, setOrientation] = useState(isPortrait() ? 'portrait' : 'landscape');
@@ -37,35 +42,46 @@ const TabBar = () => {
 
   return (
     <View style={{ flex: 1 }}>
-      <StatusBar backgroundColor={COLOR.white} barStyle='default' />
-      <View style={styles.container}>
+       {
+      isDark ?
+        <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
+        : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
+    }
+      <View style={[styles.container, isDark && {backgroundColor:COLOR.backgroundBlack}]}>
         {
           tabBar === 1 ? <Home /> : tabBar === 2 ? <Category /> : tabBar === 3 ? <Wishlist /> : <Profile />
         }
       </View>
       <View style={[styles.tabbarContainerWrap, orientation == 'landscape' && styles.tabbarLandscape, Platform.OS === 'ios' ? { bottom: 70 } : { bottom: 10 }]}>
-        <View style={[styles.tabbarcontainer, Platform.OS === 'ios' && { elevation: 20 }]}>
+        <View style={[styles.tabbarcontainer, Platform.OS === 'ios' && { elevation: 20 }, isDark && {backgroundColor:COLOR.backgroundBlack}]}>
           <View style={styles.tabbarIconContainer}>
             <TouchableOpacity onPress={() => setTabBar(1)}>
               {tabBar === 1 ? <Image style={styles.tabbarIconActive} source={HomeActive} /> :
-                <Image style={styles.tabbarIcon} source={HomeIcon} />}
+              isDark ? <Image style={styles.tabbarIcon} source={HomeIconW} />
+                :<Image style={styles.tabbarIcon} source={HomeIcon} />}
             </TouchableOpacity>
           </View>
           <View style={styles.tabbarIconContainer}>
             <TouchableOpacity onPress={() => setTabBar(2)}>
               {tabBar === 2 ? <Image style={styles.tabbarIconActive} source={CategoryActive} /> :
+              isDark ? <Image style={styles.tabbarIcon} source={CategoryIconW} />
+              :
                 <Image style={styles.tabbarIcon} source={CategoryIcon} />}
             </TouchableOpacity>
           </View>
           <View style={styles.tabbarIconContainer}>
             <TouchableOpacity onPress={() => setTabBar(3)}>
               {tabBar === 3 ? <Image style={styles.tabbarIconActive} source={HeartActive} /> :
+               isDark ? <Image style={styles.tabbarIcon} source={HeartIconW} />
+               :
                 <Image style={styles.tabbarIcon} source={HeartIcon} />}
             </TouchableOpacity>
           </View>
           <View style={styles.tabbarIconContainer}>
             <TouchableOpacity onPress={() => setTabBar(4)}>
               {tabBar === 4 ? <Image style={styles.tabbarIconActive} source={UserActive} /> :
+              isDark ? <Image style={styles.tabbarIcon} source={UserIconW} />
+              :
                 <Image style={styles.tabbarIcon} source={UserIcon} />}
             </TouchableOpacity>
           </View>

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity, ScrollView, Image } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, ScrollView, Image, useColorScheme } from 'react-native'
 import React, { useState } from 'react'
 import { COLOR } from '../const/Color'
 import Header from '../components/Header'
@@ -6,9 +6,10 @@ import { useNavigation } from '@react-navigation/native'
 import jordan from '../assets/dummy/jordan.png'
 
 const ViewDetails = () => {
+    const isDark = useColorScheme() === 'dark';
     const navigation = useNavigation()
     const [cart, setCart] = useState(0)
-    const [sizeSts, setSizeSts] = useState(null)
+    const [sizeSts, setSizeSts] = useState(3)
     const handleBackNavigation = () => {
         navigation.pop()
     }
@@ -24,46 +25,45 @@ const ViewDetails = () => {
     }
 
     const sizes = [
-        {id :0, value:3},
-        {id :1, value:3.5},
-        {id :2, value:4},
-        {id :3, value:4.5},
-        {id :4, value:5},
-        {id :5, value:5.5},
-        {id :6, value:6},
-        {id :7, value:6.5},
-        {id :8, value:7},
-        {id :9, value:7.5},
-        {id :10, value:8},
-        {id :11, value:8.5},
+        { id: 0, value: 3 },
+        { id: 1, value: 3.5 },
+        { id: 2, value: 4 },
+        { id: 3, value: 4.5 },
+        { id: 4, value: 5 },
+        { id: 5, value: 5.5 },
+        { id: 6, value: 6 },
+        { id: 7, value: 6.5 },
+        { id: 8, value: 7 },
+        { id: 9, value: 7.5 },
+        { id: 10, value: 8 },
+        { id: 11, value: 8.5 },
     ]
 
     return (
         <View style={styles.container}>
-            <StatusBar backgroundColor={COLOR.secondary_alpha} barStyle='default' />
-            <Header backBtn={handleBackNavigation} bg={COLOR.secondary_shade} />
+            {
+                isDark ?
+                    <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
+                    : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
+            }
+            <Header backBtn={handleBackNavigation} bg={isDark ? COLOR.backgroundBlack:COLOR.secondary_shade} />
 
             {/* ------------Scroll View------------- */}
-
-
-            <ScrollView style={styles.details_container}>
-                <View style={styles.product_image_container}>
+            <ScrollView style={[styles.details_container, isDark && {backgroundColor:COLOR.backgroundBlack}]}>
+                <View style={[styles.product_image_container, isDark && {backgroundColor:COLOR.black}]}>
                     <Image style={styles.product_image} source={jordan} />
                 </View>
                 <View style={styles.product_name_container}>
-                    <Text style={styles.product_type}>Mens Sneaker</Text>
-                    <Text ellipsizeMode='tail' numberOfLines={2} style={styles.product_Name}>Air Jordan One High Top Model</Text>
+                    <Text style={[styles.product_type, isDark && {color:COLOR.secondary_alpha}]}>Mens Sneaker</Text>
+                    <Text ellipsizeMode='tail' numberOfLines={2} style={[styles.product_Name, isDark && {color:COLOR.secondary_alpha}]}>Air Jordan One High Top Model</Text>
                 </View>
-                <SizeSheet sizeSts={sizeSts} sizes={sizes} setSizeSts={setSizeSts} />
+                <SizeSheet isDark={isDark} sizeSts={sizeSts} sizes={sizes} setSizeSts={setSizeSts} />
             </ScrollView>
-
-
-
 
             {/* -----------------END--------------- */}
 
             {/* --------Cart Count container-------- */}
-            <View style={styles.cart_count_container}>
+            <View style={[styles.cart_count_container, isDark && {borderTopWidth:1, borderTopColor:COLOR.primary}]}>
                 <View style={styles.price_container}>
                     <Text style={styles.price_labal_text}>Price :</Text>
                     <Text style={styles.offer_price}>${cart > 0 ? 180.00 * cart : 180.00}    <Text style={styles.current_price}>${cart > 0 ? 230.00 * cart : 230.00}</Text></Text>
@@ -96,19 +96,19 @@ const AfterCart = ({ increment, decrement, count }) => (
     </View>
 )
 
-const SizeSheet = ({sizeSts, sizes, setSizeSts}) => (
+const SizeSheet = ({ isDark, sizeSts, sizes, setSizeSts }) => (
     <View style={styles.size_container}>
-                    <Text style={styles.size_text}>Size : </Text>
-                    <View style={styles.productSizes}>
-                       {sizes?.map((item, i) => (
+        <Text style={[styles.size_text, isDark && {color:COLOR.secondary_alpha,opacity:.8}]}>Size : </Text>
+        <View style={styles.productSizes}>
+            {sizes?.map((item, i) => (
 
-                           <TouchableOpacity onPress={() => setSizeSts(item.id)} key={i} style={[styles.productSize,(item.id === sizeSts) && {backgroundColor:COLOR.secondary} ]}>
-                            <Text style={styles.size_value_text}>{item.value}</Text>
-                        </TouchableOpacity>
-                            ))
-                        }
-                    </View>
-                </View>
+                <TouchableOpacity onPress={() => setSizeSts(item.id)} key={i} style={[styles.productSize, (item.id === sizeSts) && { backgroundColor: COLOR.primary },isDark&& {borderColor:COLOR.primary}]}>
+                    <Text style={[styles.size_value_text, isDark&& {color:COLOR.secondary_alpha, opacity:.5}, (item.id === sizeSts) &&{color:COLOR.secondary_alpha, opacity:1}]}>{item.value}</Text>
+                </TouchableOpacity>
+            ))
+            }
+        </View>
+    </View>
 )
 
 const styles = StyleSheet.create({
@@ -117,6 +117,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLOR.white,
         justifyContent: 'space-between'
     },
+    details_container:{backgroundColor: COLOR.white},
     cart_count_container: {
         height: 80,
         width: '100%',
@@ -203,7 +204,7 @@ const styles = StyleSheet.create({
     },
     product_image_container: {
         width: '100%',
-        height: 250,
+        height: 280,
         backgroundColor: COLOR.secondary_shade,
         alignItems: 'center',
         justifyContent: "center"
@@ -213,54 +214,55 @@ const styles = StyleSheet.create({
         height: '80%',
         resizeMode: 'contain'
     },
-    product_name_container:{
-        width:'100%',
-        minHeight:80,
-        paddingHorizontal:20,
-        justifyContent:'center'
+    product_name_container: {
+        width: '100%',
+        minHeight: 80,
+        paddingHorizontal: 20,
+        justifyContent: 'center'
     },
-    product_type:{
-        fontSize:13,
-        fontFamily:'SemiBold',
-        color:COLOR.black,
-        marginBottom:10
+    product_type: {
+        fontSize: 13,
+        fontFamily: 'SemiBold',
+        color: COLOR.black,
+        marginBottom: 10,
+        opacity:.6
     },
-    product_Name:{
-        fontSize:22,
-        fontFamily:'ExtraBold',
-        color:COLOR.black
+    product_Name: {
+        fontSize: 22,
+        fontFamily: 'ExtraBold',
+        color: COLOR.black
     },
-    size_container:{
-        width:'100%',
-        paddingHorizontal:20,
-        paddingVertical:10
+    size_container: {
+        width: '100%',
+        paddingHorizontal: 20,
+        paddingVertical: 10
     },
-    size_text:{
-        fontSize:16,
-         fontFamily:'Bold',
-         color:COLOR.black,
-         marginBottom:10
+    size_text: {
+        fontSize: 16,
+        fontFamily: 'Bold',
+        color: COLOR.black,
+        marginBottom: 10
     },
-    productSizes:{
-        width:'100%',     
-        flexDirection:'row',
-        flexWrap:'wrap', 
-        justifyContent:'space-between',
+    productSizes: {
+        width: '100%',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
     },
-    productSize:{
-        width:'15%',
-        height:35, 
-        borderWidth:.8,
-        borderRadius:5, 
-        borderColor:COLOR.light_grey, 
-        alignItems:'center',
-        justifyContent:'center',
-        marginBottom:7
+    productSize: {
+        width: '15%',
+        height: 35,
+        borderWidth: .8,
+        borderRadius: 5,
+        borderColor: COLOR.light_grey,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 7
     },
-    size_value_text:{
-        fontSize:14, 
-        fontFamily:'Lato-Bold',
-        color:COLOR.black
+    size_value_text: {
+        fontSize: 14,
+        fontFamily: 'Lato-Bold',
+        color: COLOR.black
     }
 
 

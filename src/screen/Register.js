@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, useColorScheme } from 'react-native'
 import React, { useState } from 'react'
 import { COLOR } from '../const/Color';
 import BackgroundImage from '../components/BackgroundImage';
@@ -8,13 +8,18 @@ import Button from '../components/auth/Button';
 
 const Register = ({ navigation }) => {
   const [accept, setAccept] = useState(false)
+  const isDark = useColorScheme() === 'dark'
   const handleTerms = () => {
     setAccept(!accept)
   }
 
   return (
     <>
-      <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='default' />
+      {
+      isDark ?
+        <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
+        : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
+    }
       <BackgroundImage>
         <View style={styles.container}>
           <TitleName name={"Register"} />
@@ -23,13 +28,13 @@ const Register = ({ navigation }) => {
           <InputText placeholder={"Email"} />
           <InputText placeholder={"Password"} password />
           <View style={styles.termsContainer}>
-            <TouchableOpacity onPress={handleTerms} style={styles.termsButton}>
-             {accept && <View style={styles.termsButtonClick} />}
+            <TouchableOpacity onPress={handleTerms} style={[styles.termsButton, isDark && {borderColor: COLOR.secondary_shade,}]}>
+             {accept && <View style={[styles.termsButtonClick, isDark && {backgroundColor: COLOR.secondary_shade}]} />}
             </TouchableOpacity>
-            <Text style={styles.termsText}>I accept the terms & conditions </Text>
+            <Text style={[styles.termsText, isDark && { color: COLOR.secondary_shade }]}>I accept the terms & conditions </Text>
           </View>
           <View style={{ height: 40 }} />
-          <Text style={styles.linkText}>Already have an accout ?  <Text style={styles.link} onPress={() => navigation.navigate("Login")}>Login</Text></Text>
+          <Text style={[styles.linkText, isDark && { color: COLOR.secondary_shade,}]}>Already have an accout ?  <Text style={styles.link} onPress={() => navigation.navigate("Login")}>Login</Text></Text>
           <Button btnName={"Register"} />
         </View>
       </BackgroundImage>
@@ -42,9 +47,9 @@ export default Register
 
 
 const styles = StyleSheet.create({
-  termsText: { color: COLOR.secondary_shade },
-  termsButtonClick: { height: 12, width: 12, borderRadius: 12, backgroundColor: COLOR.secondary_shade },
-  termsButton: { width: 18, marginRight: 15, height: 18, borderRadius: 18, borderWidth: 1, borderColor: COLOR.secondary_shade, alignItems: "center", justifyContent: 'center' },
+  termsText: { color: COLOR.primary },
+  termsButtonClick: { height: 12, width: 12, borderRadius: 12, backgroundColor: COLOR.primary },
+  termsButton: { width: 18, marginRight: 15, height: 18, borderRadius: 18, borderWidth: 1, borderColor: COLOR.primary, alignItems: "center", justifyContent: 'center' },
   termsContainer: { width: '100%', paddingHorizontal: 55, marginTop: 10, flexDirection: 'row' },
   container: {
     height: '100%',
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontSize: 13,
-    color: COLOR.secondary_shade,
+    color: COLOR.backgroundBlack,
     marginBottom: 15
   },
   link: {

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, StatusBar, Dimensions, TouchableOpacity } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, Dimensions, useColorScheme } from 'react-native'
 import React from 'react'
 import { COLOR } from '../const/Color'
 import { Header } from '../components/profile/Header'
@@ -9,22 +9,23 @@ import Button from '../components/auth/Button'
 const { height, width } = Dimensions.get('window')
 
 const Profile = () => {
+  const isDark = useColorScheme() === 'dark'
   return (
          <ScrollView showsVerticalScrollIndicator={false}> 
     <View style={styles.container}>
       <StatusBar backgroundColor={COLOR.backgroundBlack} />
       <Header />
-      <View style={styles.scrollContainer}>
-          <ProfileCard name={"Profile Details"} />
-          <ProfileCard name={"Edit Yout Address"} />
-          <ProfileCard name={"Track Your Orders"} />
-          <ProfileCard name={"Payment Method"} />
-          <ProfileCard name={"Help"} />
-          <ProfileCard name={"About Us"} />
+      <View style={[styles.scrollContainer, isDark && {backgroundColor:COLOR.backgroundBlack}]}>
+          <ProfileCard isDark={isDark} name={"Profile Details"} />
+          <ProfileCard isDark={isDark} name={"Edit Yout Address"} />
+          <ProfileCard isDark={isDark} name={"Track Your Orders"} />
+          <ProfileCard isDark={isDark} name={"Payment Method"} />
+          <ProfileCard isDark={isDark} name={"Help"} />
+          <ProfileCard isDark={isDark} name={"About Us"} />
           <Button padZero defFont btnName={"LOGOUT"}/>
       </View>
     </View>
-          <ViewHeight color={COLOR.backgroundBlack} />
+          <ViewHeight />
          </ScrollView> 
   )
 }
@@ -32,6 +33,6 @@ const Profile = () => {
 export default Profile
 
 const styles = StyleSheet.create({
-  container: { height: height, width: width, backgroundColor: COLOR.backgroundBlack, },
-  scrollContainer: { height: height - 200, backgroundColor: COLOR.backgroundBlack, paddingHorizontal: 20, paddingTop: 10 },
+  container: { height: height, width: width, },
+  scrollContainer: { height: height - 200, backgroundColor: COLOR.white, paddingHorizontal: 20, paddingTop: 10 },
 })

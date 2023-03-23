@@ -1,9 +1,9 @@
 import  { StyleSheet , View, Text} from 'react-native'
 import { COLOR } from '../../const/Color'
 
-export const WelcomeText = () => (
+export const WelcomeText = ({isDark}) => (
     <View style={styles.welcomeTextContainer}>
-  <Text style={styles.welcomeText}>Choose Your {'\n'}<Text style={styles.welcomeTextShade}>Brand New Sneaker</Text></Text>
+  <Text style={[styles.welcomeText, isDark && {color:COLOR.primary}]}>Choose Your {'\n'}<Text style={[styles.welcomeTextShade, isDark && {color:COLOR.secondary_shade}]}>Brand New Sneaker</Text></Text>
     </View>
   )
   

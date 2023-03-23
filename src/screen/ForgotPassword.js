@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, StatusBar } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, useColorScheme } from 'react-native'
 import React from 'react'
 import { COLOR } from '../const/Color';
 import BackgroundImage from '../components/BackgroundImage';
@@ -7,8 +7,13 @@ import InputText from '../components/auth/InputText';
 import Button from '../components/auth/Button';
 
 const ForgotPassword = ({ navigation }) => {
+  const isDark = useColorScheme() === 'dark'
   return (<>
-    <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='default' />
+    {
+      isDark ?
+        <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
+        : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
+    }
     <BackgroundImage>
       <View style={styles.container}>
         <TitleName name={"Reset Password"} />

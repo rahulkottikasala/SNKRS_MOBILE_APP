@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, StatusBar } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, useColorScheme } from 'react-native'
 import React from 'react'
 import { COLOR } from '../const/Color';
 import BackgroundImage from '../components/BackgroundImage';
@@ -7,17 +7,22 @@ import InputText from '../components/auth/InputText';
 import Button from '../components/auth/Button';
 
 const Login = ({ navigation }) => {
+  const isDark = useColorScheme() === 'dark'
   return (<>
-    <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='default' />
+    {
+      isDark ?
+        <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
+        : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
+    }
     <BackgroundImage>
       <View style={styles.container}>
         <TitleName name={"Login"} />
         <View style={{ height: 40 }} />
         <InputText placeholder={"Email / Username"} />
-        <InputText placeholder={"Password"} password/>
-        <Text style={styles.forgotLink} onPress={() => navigation.navigate("Forgot")}>Forgot Password ?</Text>
+        <InputText placeholder={"Password"} password />
+        <Text style={[styles.forgotLink,isDark && {color:COLOR.secondary_shade}]} onPress={() => navigation.navigate("Forgot")}>Forgot Password ?</Text>
         <View style={{ height: 40 }} />
-        <Text style={styles.linkText}>Don't have an accout ?  <Text style={styles.link} onPress={() => navigation.navigate("Register")}>Sign Up</Text></Text>
+        <Text style={[styles.linkText,isDark && {color:COLOR.secondary_shade}]}>Don't have an accout ?  <Text style={styles.link} onPress={() => navigation.navigate("Register")}>Sign Up</Text></Text>
         <Button action={() => navigation.navigate("TabBar")} btnName={"Login"} />
       </View>
     </BackgroundImage>
@@ -39,8 +44,8 @@ const styles = StyleSheet.create({
   },
   linkText: {
     fontSize: 13,
-    color: COLOR.secondary_shade,
-    marginBottom:15
+    color: COLOR.backgroundBlack,
+    marginBottom: 15
   },
   link: {
     color: COLOR.primary,
@@ -48,11 +53,11 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline"
   },
   forgotLink: {
-    color: COLOR.secondary_shade,
-    alignSelf:'flex-end',
+    color: COLOR.backgroundBlack,
+    alignSelf: 'flex-end',
     fontSize: 14,
-    marginRight:50,
-    marginTop:5,
+    marginRight: 50,
+    marginTop: 5,
     textDecorationLine: "underline"
   }
 })
