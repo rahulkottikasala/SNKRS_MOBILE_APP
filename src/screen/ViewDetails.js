@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, StatusBar, TouchableOpacity, ScrollView, Image, useColorScheme } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, TouchableOpacity, ScrollView, Image, useColorScheme,ToastAndroid } from 'react-native'
 import React, { useState } from 'react'
 import { COLOR } from '../const/Color'
 import Header from '../components/Header'
@@ -25,18 +25,18 @@ const ViewDetails = () => {
     }
 
     const sizes = [
-        { id: 0, value: 3 },
-        { id: 1, value: 3.5 },
-        { id: 2, value: 4 },
-        { id: 3, value: 4.5 },
-        { id: 4, value: 5 },
-        { id: 5, value: 5.5 },
-        { id: 6, value: 6 },
-        { id: 7, value: 6.5 },
-        { id: 8, value: 7 },
-        { id: 9, value: 7.5 },
-        { id: 10, value: 8 },
-        { id: 11, value: 8.5 },
+        { id: 0, value: 3, qnty: 2 },
+        { id: 1, value: 3.5, qnty: 2 },
+        { id: 2, value: 4, qnty: 2 },
+        { id: 3, value: 4.5, qnty: 2 },
+        { id: 4, value: 5, qnty: 0 },
+        { id: 5, value: 5.5, qnty: 2 },
+        { id: 6, value: 6, qnty: 0 },
+        { id: 7, value: 6.5, qnty: 2 },
+        { id: 8, value: 7, qnty: 2 },
+        { id: 9, value: 7.5, qnty: 0 },
+        { id: 10, value: 8, qnty: 0 },
+        { id: 11, value: 8.5, qnty: 2 },
     ]
 
     return (
@@ -46,16 +46,16 @@ const ViewDetails = () => {
                     <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
                     : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
             }
-            <Header backBtn={handleBackNavigation} bg={isDark ? COLOR.backgroundBlack:COLOR.secondary_shade} />
+            <Header backBtn={handleBackNavigation} bg={isDark ? COLOR.backgroundBlack : COLOR.secondary_shade} />
 
             {/* ------------Scroll View------------- */}
-            <ScrollView style={[styles.details_container, isDark && {backgroundColor:COLOR.backgroundBlack}]}>
-                <View style={[styles.product_image_container, isDark && {backgroundColor:COLOR.black}]}>
+            <ScrollView style={[styles.details_container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
+                <View style={[styles.product_image_container, isDark && { backgroundColor: COLOR.black }]}>
                     <Image style={styles.product_image} source={jordan} />
                 </View>
                 <View style={styles.product_name_container}>
-                    <Text style={[styles.product_type, isDark && {color:COLOR.secondary_alpha}]}>Mens Sneaker</Text>
-                    <Text ellipsizeMode='tail' numberOfLines={2} style={[styles.product_Name, isDark && {color:COLOR.secondary_alpha}]}>Air Jordan One High Top Model</Text>
+                    <Text style={[styles.product_type, isDark && { color: COLOR.secondary_alpha }]}>Mens Sneaker</Text>
+                    <Text ellipsizeMode='tail' numberOfLines={2} style={[styles.product_Name, isDark && { color: COLOR.secondary_alpha }]}>Air Jordan One High Top Model</Text>
                 </View>
                 <SizeSheet isDark={isDark} sizeSts={sizeSts} sizes={sizes} setSizeSts={setSizeSts} />
             </ScrollView>
@@ -63,7 +63,7 @@ const ViewDetails = () => {
             {/* -----------------END--------------- */}
 
             {/* --------Cart Count container-------- */}
-            <View style={[styles.cart_count_container, isDark && {borderTopWidth:1, borderTopColor:COLOR.primary}]}>
+            <View style={[styles.cart_count_container, isDark && { borderTopWidth: 1, borderTopColor: COLOR.primary }]}>
                 <View style={styles.price_container}>
                     <Text style={styles.price_labal_text}>Price :</Text>
                     <Text style={styles.offer_price}>${cart > 0 ? 180.00 * cart : 180.00}    <Text style={styles.current_price}>${cart > 0 ? 230.00 * cart : 230.00}</Text></Text>
@@ -98,12 +98,26 @@ const AfterCart = ({ increment, decrement, count }) => (
 
 const SizeSheet = ({ isDark, sizeSts, sizes, setSizeSts }) => (
     <View style={styles.size_container}>
-        <Text style={[styles.size_text, isDark && {color:COLOR.secondary_alpha,opacity:.8}]}>Size : </Text>
+        <Text style={[styles.size_text, isDark && { color: COLOR.secondary_alpha, opacity: .8 }]}>Size : </Text>
         <View style={styles.productSizes}>
             {sizes?.map((item, i) => (
 
-                <TouchableOpacity onPress={() => setSizeSts(item.id)} key={i} style={[styles.productSize, (item.id === sizeSts) && { backgroundColor: COLOR.primary },isDark&& {borderColor:COLOR.primary}]}>
-                    <Text style={[styles.size_value_text, isDark&& {color:COLOR.secondary_alpha, opacity:.5}, (item.id === sizeSts) &&{color:COLOR.secondary_alpha, opacity:1}]}>{item.value}</Text>
+                <TouchableOpacity onPress={() => {
+                    setSizeSts(item.id)
+                    if(item?.qnty < 1){
+                        ToastAndroid.showWithGravity('Out Of Stock',ToastAndroid.LONG,ToastAndroid.BOTTOM,)
+
+                        //default size
+                        // setTimeout(() => {
+                        //     setSizeSts(3)
+                        // },2000)
+
+                    }
+                }} key={i} style={[styles.productSize, (item.id === sizeSts) && !(item?.qnty < 1) && { backgroundColor: COLOR.primary, borderWidth:0 }, isDark && !(item?.qnty < 1)  && { borderColor: COLOR.primary }]}>
+                    <Text style={[styles.size_value_text, isDark && { color: COLOR.secondary_alpha, opacity: .5 }, (item.id === sizeSts) && { color: COLOR.secondary_alpha, opacity: 1 }, (item?.qnty < 1) && { color: COLOR.grey, opacity: 1 }]}>{item.value}</Text>
+                    {item?.qnty < 1 && <><View style={[{ width: '100%', height: 1, backgroundColor: COLOR.grey, position: 'absolute', top: 16, transform: [{ rotate: '33deg' }] }, isDark && {backgroundColor:COLOR.black}]} />
+                        <View style={[{ width: '100%', height: 1, backgroundColor: COLOR.grey, position: 'absolute', top: 16, transform: [{ rotate: '-33deg' }] }, isDark && {backgroundColor:COLOR.black}]} />
+                    </>}
                 </TouchableOpacity>
             ))
             }
@@ -117,7 +131,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLOR.white,
         justifyContent: 'space-between'
     },
-    details_container:{backgroundColor: COLOR.white},
+    details_container: { backgroundColor: COLOR.white },
     cart_count_container: {
         height: 80,
         width: '100%',
@@ -225,7 +239,7 @@ const styles = StyleSheet.create({
         fontFamily: 'SemiBold',
         color: COLOR.black,
         marginBottom: 10,
-        opacity:.6
+        opacity: .6
     },
     product_Name: {
         fontSize: 22,
@@ -252,9 +266,9 @@ const styles = StyleSheet.create({
     productSize: {
         width: '15%',
         height: 35,
-        borderWidth: .8,
+        borderWidth: .7,
         borderRadius: 5,
-        borderColor: COLOR.light_grey,
+        borderColor: COLOR.black,
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 7
