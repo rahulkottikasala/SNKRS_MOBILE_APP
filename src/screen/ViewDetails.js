@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import jordan from '../assets/dummy/jordan.png'
 import ViewIcon from '../assets/icons/view.png'
 import ViewIconW from '../assets/icons/view-w.png'
-import DeliveryAddress from '../components/product_details/DeliveryAddress'
+import DeliveryAddress from '../components/product/DeliveryAddress'
 import ViewHeight from '../components/ViewHeight'
 
 const ViewDetails = () => {

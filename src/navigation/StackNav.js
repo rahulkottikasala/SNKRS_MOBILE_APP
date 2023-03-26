@@ -1,5 +1,6 @@
 
 import { createStackNavigator } from '@react-navigation/stack'
+import Cart from '../screen/Cart'
 import Category from '../screen/Category'
 import ForgotPassword from '../screen/ForgotPassword'
 import Login from '../screen/Login'
@@ -24,5 +25,6 @@ export const MyStack = () => (
     <Stack.Screen name="Wishlist" component={Wishlist} options={{ headerShown: false }} />
     <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
     <Stack.Screen name="ViewDetails" component={ViewDetails} options={{ headerShown: false }} />
+    <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
   </Stack.Navigator>
 )

@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { COLOR } from "../../const/Color"
 import Snkrs from '../../assets/dummy/running.png'
 
-export const Card = ({ isCart = false, isDark }) => {
+export const Card = ({ isCart, isDark }) => {
     return (
         <View style={styles.container}>
             <View style={[styles.subContainer, isDark && {backgroundColor:COLOR.black}]}>
@@ -18,7 +18,7 @@ export const Card = ({ isCart = false, isDark }) => {
                     <View style={styles.buttonContainer}>
                         {
                             isCart ? (
-                                <IncButton />
+                                <IncButton isDark={isDark} />
                             ) : <CButton name={"Add To Cart"} color={COLOR.white} />
                         }
                         <CButton name={"Remove"} />
@@ -34,11 +34,11 @@ const CButton = ({ name, action, color }) => (
         <Text style={[styles.btnText, color && {color:COLOR.backgroundBlack}]}>{name ? name : "Button"}</Text>
     </TouchableOpacity>
 )
-const IncButton = ({ count = 1 }) => (
+const IncButton = ({ count = 1 , isDark}) => (
     <View style={styles.incBtnCont}>
         <TouchableOpacity style={styles.incbtn}><Text style={styles.incBtnText}>-</Text></TouchableOpacity>
         <View style={styles.countCont} >
-            <Text style={styles.countTxt}>{count}</Text>
+            <Text style={[styles.countTxt, isDark && {color:COLOR.secondary_alpha}]}>{count}</Text>
         </View>
         <TouchableOpacity style={styles.incbtn}><Text style={styles.incBtnText}>+</Text></TouchableOpacity>
     </View>
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     countCont: { width: '34%', height: '100%', alignItems: 'center', justifyContent: 'center' },
     incbtn: { width: '33%', height: '100%', borderRadius: 7, backgroundColor: COLOR.secondary_shade, alignItems: 'center', justifyContent: 'center' },
     incBtnText: { color: COLOR.backgroundBlack, fontSize: 20, fontWeight: '800' },
-    incBtnCont: { backgroundColor: COLOR.white, width: 100, height: 30, borderRadius: 7, flexDirection: "row", },
+    incBtnCont: {  width: 100, height: 30, borderRadius: 7, flexDirection: "row", },
     container: {
         width: '100%',
         height: 130,
