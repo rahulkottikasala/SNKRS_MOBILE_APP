@@ -13,13 +13,15 @@ import MenuIconW from '../assets/icons/menu-w.png'
 import Logo from '../assets/icons/logo.png'
 import LogoW from '../assets/icons/logo-w.png'
 import { COLOR } from '../const/Color'
+import { useNavigation } from '@react-navigation/native'
 
-const Header = ({ backBtn, title, bg }) => {
+const Header = ({ backBtn, title, bg, isCart }) => {
     const isDark = useColorScheme() === 'dark';
+    const navigation = useNavigation()
     return (
         <View style={[styles.container, bg && { backgroundColor: bg }]}>
             {title && <View style={styles.headerTextContainer}>
-                <Text style={styles.headerText}>{title ? "Wishlist" : "Title"}</Text>
+                <Text style={[styles.headerText,isDark && {color:COLOR.secondary_alpha}]}>{title && title}</Text>
             </View>}
             {backBtn ?
                 <TouchableOpacity style={styles.logoButton} onPress={() => backBtn()}>
@@ -40,11 +42,20 @@ const Header = ({ backBtn, title, bg }) => {
                         <Image style={styles.logo} source={SearchIconW} />
                         : <Image style={styles.logo} source={SearchIcon} />}
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.logoButton}>
-                    {isDark ?
-                        <Image style={styles.logo} source={CartIconW} />
-                        : <Image style={styles.logo} source={CartIcon} />}
-                </TouchableOpacity>
+                {
+                    isCart ?
+                        (<TouchableOpacity onPress={() => navigation.navigate('Wishlist')} style={styles.logoButton}>
+                            {isDark ?
+                                <Image style={styles.logo} source={HeartIconW} />
+                                : <Image style={styles.logo} source={HeartIcon} />}
+                        </TouchableOpacity>)
+                        :
+                        (<TouchableOpacity onPress={() => navigation.navigate('Cart')} style={styles.logoButton}>
+                            {isDark ?
+                                <Image style={styles.logo} source={CartIconW} />
+                                : <Image style={styles.logo} source={CartIcon} />}
+                        </TouchableOpacity>)
+                }
             </View>
         </View>
     )
@@ -81,8 +92,8 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     headerText: {
-        color: COLOR.black,
+        color: COLOR.backgroundBlack,
         fontSize: 20,
-        fontFamily: 'Regular'
+        fontFamily: 'Lato-Bold'
     }
 })
