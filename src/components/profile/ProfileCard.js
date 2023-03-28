@@ -5,7 +5,7 @@ import { COLOR } from '../../const/Color'
 
 export const ProfileCard = ({ name, action, isDark }) => {
   return (
-    <TouchableOpacity style={[styles.profileCard, isDark && { borderWidth: 0, backgroundColor: COLOR.black }]}>
+    <TouchableOpacity onPress={action && action } style={[styles.profileCard, isDark && { borderWidth: 0, backgroundColor: COLOR.black }]}>
       <Text style={[styles.cardTitle, isDark && { color: COLOR.secondary_alpha }]}>{name}</Text>
     </TouchableOpacity>
   )

@@ -1,10 +1,12 @@
 
 import { createStackNavigator } from '@react-navigation/stack'
+import CardDetails from '../screen/CardDetails'
 import Cart from '../screen/Cart'
 import Category from '../screen/Category'
 import ForgotPassword from '../screen/ForgotPassword'
 import Home from '../screen/Home'
 import Login from '../screen/Login'
+import Payment from '../screen/Payment'
 import Profile from '../screen/Profile'
 import Register from '../screen/Register'
 import SplashScreen from '../screen/SplashScreen'
@@ -28,5 +30,7 @@ export const MyStack = () => (
     <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
     <Stack.Screen name="ViewDetails" component={ViewDetails} options={{ headerShown: false }} />
     <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
+    <Stack.Screen name="CardDetails" component={CardDetails} options={{ headerShown: false }} />
+    <Stack.Screen name="Payment" component={Payment} options={{ headerShown: false }} />
   </Stack.Navigator>
 )

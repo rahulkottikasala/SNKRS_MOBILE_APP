@@ -4,7 +4,7 @@ import { COLOR } from '../../const/Color'
 
 export const Card = ({ isDark, cardImage, action, isSmall, bg }) => (
 
-  <TouchableOpacity style={[styles.card, isSmall && { width: 110, height: 180, marginLeft: 10 }]} onPress={action ? action : console.log("clicked")}>
+  <TouchableOpacity style={[styles.card, isSmall && { width: 110, height: 180, marginLeft: 10 }]} onPress={action && action}>
     <View style={[styles.image_container,bg && {backgroundColor:bg}, isDark && { backgroundColor: COLOR.black }]}>
       {!isSmall &&
         <View style={styles.label}><Text style={styles.labelText}>40% OFF</Text></View>
