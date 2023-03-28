@@ -6,7 +6,7 @@ import meas from '../../assets/images/payment/meas_card.png';
 import visa from '../../assets/images/payment/visa_card.png';
 import chip from '../../assets/images/payment/chip_card.png';
 import { COLOR } from "../../const/Color";
-import { TextInput } from "react-native-gesture-handler";
+import Animated, { FlipInEasyX, FlipInEasyY, FlipInXDown, FlipInXUp, FlipOutEasyX, Layout, RollInLeft, RotateInDownLeft } from "react-native-reanimated";
 
 
 
@@ -14,8 +14,8 @@ export const AtmCardFront = ({ cardNumber, name, expiry }) => {
 
 
     return (
-        <View style={{ height: 186, width: '100%', paddingHorizontal: 10, minWidth: 300 }}>
-            <View style={{ height: 186, width: '100%', backgroundColor: "grey", borderRadius: 20, overflow: 'hidden', backgroundColor: COLOR.primary, }}>
+        <Animated.View entering={FlipInEasyY.duration(750)} style={{ height: 186, width: '100%', paddingHorizontal: 10, minWidth: 300 }}>
+            <Animated.View style={{ height: 186, width: '100%', backgroundColor: "grey", borderRadius: 20, overflow: 'hidden', backgroundColor: COLOR.primary, }}>
                 <View style={{ width: '100%', height: 56, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' }}>
                     <Image source={chip} style={{ width: 40, resizeMode: 'contain', height: 35 }} />
                     <View style={{ flexDirection: 'row' }}>
@@ -60,8 +60,8 @@ export const AtmCardFront = ({ cardNumber, name, expiry }) => {
                     </View>
                 </View>
 
-            </View>
-        </View>
+            </Animated.View>
+        </Animated.View>
 
     )
 }
@@ -70,7 +70,7 @@ export const AtmCardFront = ({ cardNumber, name, expiry }) => {
 
 export const AtmCardBack = ({cvv}) => {
     return (
-        <View style={{ height: 186, width: '100%', paddingHorizontal: 10, minWidth: 300 }}>
+        <Animated.View entering={FlipInEasyY.duration(750)} style={{ height: 186, width: '100%', paddingHorizontal: 10, minWidth: 300 }}>
             <View style={{ height: 186, width: '100%', backgroundColor: "grey", borderRadius: 20, overflow: 'hidden', backgroundColor: COLOR.primary, }}>
                 <Text style={{ height: 22, fontSize: 10, textAlignVertical: "center", textAlign: "center" }}>For customer service, call +123-456-789 </Text>
 
@@ -85,9 +85,9 @@ export const AtmCardBack = ({cvv}) => {
                             <View style={{ width: '100%', height: 1, marginVertical: 3, backgroundColor: COLOR.black, opacity: .3 }} />
                         </View>
                         <View style={{ width: '20%', height: '100%', alignItems: 'center', justifyContent: 'center', flexDirection: 'row' }}>
-                            <Text style={{ width: 13, fontSize: 15, fontFamily: 'Lato-Bold', color: COLOR.backgroundBlack }}>{cvv?.toString().length > 0 ? cvv?.toString()[0] : "X"}</Text>
-                            <Text style={{ width: 13, fontSize: 15, fontFamily: 'Lato-Bold', color: COLOR.backgroundBlack }}>{cvv?.toString().length > 1 ? cvv?.toString()[1] : "X"}</Text>
-                            <Text style={{ width: 13, fontSize: 15, fontFamily: 'Lato-Bold', color: COLOR.backgroundBlack }}>{cvv?.toString().length > 2 ? cvv?.toString()[2] : "X"}</Text>
+                            <Text style={{ width: 13, fontSize: 15, fontFamily: 'Lato-BoldItalic', color: COLOR.backgroundBlack }}>{cvv?.toString().length > 0 ? cvv?.toString()[0] : "X"}</Text>
+                            <Text style={{ width: 13, fontSize: 15, fontFamily: 'Lato-BoldItalic', color: COLOR.backgroundBlack }}>{cvv?.toString().length > 1 ? cvv?.toString()[1] : "X"}</Text>
+                            <Text style={{ width: 13, fontSize: 15, fontFamily: 'Lato-BoldItalic', color: COLOR.backgroundBlack }}>{cvv?.toString().length > 2 ? cvv?.toString()[2] : "X"}</Text>
                         </View>
                     </View>
 
@@ -99,7 +99,7 @@ export const AtmCardBack = ({cvv}) => {
 
 
             </View>
-        </View>
+        </Animated.View>
     )
 }
 
