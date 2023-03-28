@@ -29,103 +29,87 @@ export const AtmCardFront = ({ cardNumber, name, expiry }) => {
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[0]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 1 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[1]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 2 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[2]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 3 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[3]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                    <Text style={{marginRight:10}}></Text>
-                     {
+                    <Text style={{ marginRight: 10 }}></Text>
+                    {
                         cardNumber?.toString().length > 4 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[4]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 5 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[5]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 6 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[6]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 7 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[7]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                    <Text style={{marginRight:10}}></Text>
+                    <Text style={{ marginRight: 10 }}></Text>
 
-                     {
+                    {
                         cardNumber?.toString().length > 8 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[8]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 9 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[9]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 10 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[10]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 11 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[11]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                    <Text style={{marginRight:10}}></Text>
+                    <Text style={{ marginRight: 10 }}></Text>
 
-                     {
+                    {
                         cardNumber?.toString().length > 12 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[12]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 13 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[13]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 14 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[14]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                     {
+                    {
                         cardNumber?.toString().length > 15 ?
                             <Animated.Text entering={FlipInXUp} style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber.toString()[15]}</Animated.Text>
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
-                   
-                    
-                    {/* <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 1 ? cardNumber.toString()[1] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 2 ? cardNumber.toString()[2] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 10 }}>{cardNumber?.toString().length > 3 ? cardNumber.toString()[3] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 4 ? cardNumber.toString()[4] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 5 ? cardNumber.toString()[5] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 6 ? cardNumber.toString()[6] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 10 }}>{cardNumber?.toString().length > 7 ? cardNumber.toString()[7] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 8 ? cardNumber.toString()[8] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 9 ? cardNumber.toString()[9] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 10 ? cardNumber.toString()[10] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 10 }}>{cardNumber?.toString().length > 11 ? cardNumber.toString()[11] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 12 ? cardNumber.toString()[12] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 13 ? cardNumber.toString()[13] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>{cardNumber?.toString().length > 14 ? cardNumber.toString()[14] : 'X'}</Text>
-                    <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 10 }}>{cardNumber?.toString().length > 15 ? cardNumber.toString()[15] : 'X'}</Text> */}
+
                 </View>
 
                 <View style={{ width: '100%', height: 90, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, alignItems: "center" }}>
