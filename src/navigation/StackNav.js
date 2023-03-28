@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import Cart from '../screen/Cart'
 import Category from '../screen/Category'
 import ForgotPassword from '../screen/ForgotPassword'
+import Home from '../screen/Home'
 import Login from '../screen/Login'
 import Profile from '../screen/Profile'
 import Register from '../screen/Register'
@@ -21,6 +22,7 @@ export const MyStack = () => (
     <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
     <Stack.Screen name="Forgot" component={ForgotPassword} options={{ headerShown: false }} />
     <Stack.Screen name="TabBar" component={TabBar} options={{ headerShown: false }} />
+    {/* <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} /> */}
     <Stack.Screen name="Category" component={Category} options={{ headerShown: false }} />
     <Stack.Screen name="Wishlist" component={Wishlist} options={{ headerShown: false }} />
     <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />

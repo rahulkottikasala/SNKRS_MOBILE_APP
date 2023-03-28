@@ -2,18 +2,22 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { COLOR } from '../../const/Color'
 
-export const Card = ({ isDark, cardImage, action }) => (
+export const Card = ({ isDark, cardImage, action, isSmall, bg }) => (
 
-  <TouchableOpacity style={styles.card} onPress={action ? action : console.log("clicked")}>
-    <View style={[styles.image_container, isDark && {backgroundColor:COLOR.black}]}>
-      <View style={styles.label}><Text style={styles.labelText}>40% OFF</Text></View>
+  <TouchableOpacity style={[styles.card, isSmall && { width: 110, height: 180, marginLeft: 10 }]} onPress={action ? action : console.log("clicked")}>
+    <View style={[styles.image_container,bg && {backgroundColor:bg}, isDark && { backgroundColor: COLOR.black }]}>
+      {!isSmall &&
+        <View style={styles.label}><Text style={styles.labelText}>40% OFF</Text></View>
+      }
       {cardImage && <Image style={styles.image} source={cardImage} />}
     </View>
     <View style={styles.info_container}>
-      <Text numberOfLines={2} ellipsizeMode='tail' style={[styles.product_name, isDark && {color:COLOR.secondary_alpha}]}>Converse All Star Sneakers </Text>
+      <Text numberOfLines={2} ellipsizeMode='tail' style={[styles.product_name, isDark && { color: COLOR.secondary_alpha }, isSmall && { fontSize: 12 }]}>Converse All Star Sneakers </Text>
       <View style={styles.price_container}>
-        <Text style={styles.offer_price}>$180.00</Text>
-        <Text style={styles.current_price}>$200.70</Text>
+        <Text style={[styles.offer_price, isSmall && {fontSize:14}]}>$180.00</Text>
+        {!isSmall &&
+          <Text style={[styles.current_price, bg && {color:COLOR.black}]}>$200.70</Text>
+        }
       </View>
     </View>
   </TouchableOpacity>
@@ -34,7 +38,7 @@ const styles = StyleSheet.create({
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
-    borderRadius:10,
+    borderRadius: 10,
   },
   image: {
     width: '80%',

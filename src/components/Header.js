@@ -21,7 +21,7 @@ const Header = ({ backBtn, title, bg, isCart }) => {
     return (
         <View style={[styles.container, bg && { backgroundColor: bg }]}>
             {title && <View style={styles.headerTextContainer}>
-                <Text style={[styles.headerText,isDark && {color:COLOR.secondary_alpha}]}>{title && title}</Text>
+                <Text style={[styles.headerText, isDark && { color: COLOR.secondary_alpha }]}>{title && title}</Text>
             </View>}
             {backBtn ?
                 <TouchableOpacity style={styles.logoButton} onPress={() => backBtn()}>
@@ -29,7 +29,8 @@ const Header = ({ backBtn, title, bg, isCart }) => {
                         <Image style={styles.logo} source={ArrowLeftW} />
                         : <Image style={styles.logo} source={ArrowLeft} />}
                 </TouchableOpacity>
-                : <TouchableOpacity style={styles.logoButton}>
+                : <TouchableOpacity
+                    style={styles.logoButton}>
                     {isDark ?
                         <Image style={styles.appLogo} source={LogoW} />
                         : <Image style={styles.appLogo} source={Logo} />}

@@ -15,6 +15,7 @@ const Wishlist = () => {
   const font = useSharedValue(17)
   const lastContentOffset = useSharedValue(0);
   const isScrolling = useSharedValue(false);
+  const show = useSharedValue(false);
 
   const actionBarStyle = useAnimatedStyle(() => {
     return {
@@ -52,15 +53,16 @@ const Wishlist = () => {
       if (
         event.contentOffset.y == 0 || event.contentOffset.y < 10
       ) {
-          translateY.value = 0;
-          font.value = 17
-          borderWidth.value = 1;
+        translateY.value = 0;
+        font.value = 17
+        borderWidth.value = 1;
       } else if (
         lastContentOffset.value < event.contentOffset.y &&
         isScrolling.value
       ) {
         translateY.value = -(width / 3);
         font.value = 15
+        show.value = true
         borderWidth.value = 0
       }
       lastContentOffset.value = event.contentOffset.y;
@@ -104,7 +106,7 @@ export default Wishlist
 
 const styles = StyleSheet.create({
   title: { fontSize: 18, fontFamily: 'Lato-Bold', color: COLOR.backgroundBlack, textAlign: "center", marginVertical: 10, },
-  subHeader: { width: '100%', height: 40, borderWidth: 1, justifyContent: 'center' },
+  subHeader: { width: '100%', height: 40, borderWidth: 1,borderColor:COLOR.lightGrey, justifyContent: 'center' },
   headerContainer: { width: '100%', height: 50, paddingHorizontal: 20, alignItems: 'center', },
   container: { flex: 1 }
 })

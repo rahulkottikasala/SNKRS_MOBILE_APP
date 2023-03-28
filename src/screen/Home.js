@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, useColorScheme, StatusBar } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, useColorScheme, StatusBar, ToastAndroid } from 'react-native'
 import React, { useState } from 'react'
 import Header from '../components/Header'
 import { COLOR } from '../const/Color'
@@ -11,8 +11,37 @@ import force1White from '../assets/dummy/force1White.png'
 import force1Red from '../assets/dummy/force1Red.png'
 import converse from '../assets/dummy/converse.png'
 import { useNavigation } from '@react-navigation/native'
+import InterstingProduct from '../components/home/InterstingProduct'
+import FeaturedProduct from '../components/home/FeaturedProduct'
 
 const Home = () => {
+
+  const catProduct = [
+    {
+      id: '001',
+      image: jordan
+    },
+    {
+      id: '002',
+      image: force1White
+    },
+    {
+      id: '003',
+      image: jordan
+    },
+    {
+      id: '004',
+      image: force1Red
+    },
+    {
+      id: '005',
+      image: converse
+    },
+    {
+      id: '006',
+      image: force1White
+    }
+  ]
 
   const isDark = useColorScheme() === 'dark';
 
@@ -25,21 +54,26 @@ const Home = () => {
 
   return (
     <View style={[styles.container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
-        <Header />
+      <Header />
       <ScrollView>
         <WelcomeText isDark={isDark} />
         <OfferBanner />
         <CategoryTab isDark={isDark} index={categoryTabIndex} setIndex={setCategoryTabIndex} />
         <View style={styles.product_list}>
           {/* -----card----- */}
+          {
+            catProduct?.slice(0, 6).map((item, i) => (
+              <Card key={i} isDark={isDark} action={handleViewDetails} cardImage={item.image} />
 
-          <Card isDark={isDark} action={handleViewDetails} cardImage={jordan} />
-          <Card isDark={isDark} action={handleViewDetails} cardImage={force1White} />
-          <Card isDark={isDark} action={handleViewDetails} cardImage={jordan} />
-          <Card isDark={isDark} action={handleViewDetails} cardImage={force1Red} />
-          <Card isDark={isDark} action={handleViewDetails} cardImage={converse} />
-          <Card isDark={isDark} action={handleViewDetails} cardImage={force1White} />
+            ))
+          }
         </View>
+        <CategoryTabBottom isDark={isDark}/>
+
+        <FeaturedProduct isDark={isDark} />
+        <InterstingProduct isDark={isDark} />
+
+        <ViewHeight />
         <ViewHeight />
       </ScrollView>
     </View>
@@ -50,16 +84,25 @@ export default Home
 
 
 
-const CategoryTab = ({isDark, index, setIndex }) => (
+const CategoryTab = ({ isDark, index, setIndex }) => (
   <View style={styles.categoryTabContainer}>
-    <View style={[styles.categoryTab, isDark && {borderColor:COLOR.primary}]}>
-      <TouchableOpacity onPress={() => setIndex(0)} style={[styles.categoryTabItem, index === 0 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 0 && styles.categoryTabItemTextActive, isDark && index === 0 && {color:COLOR.primary}]}>All</Text></TouchableOpacity>
-      <TouchableOpacity onPress={() => setIndex(1)} style={[styles.categoryTabItem, index === 1 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 1 && styles.categoryTabItemTextActive, isDark && index === 1 && {color:COLOR.primary}]}>Men</Text></TouchableOpacity>
-      <TouchableOpacity onPress={() => setIndex(2)} style={[styles.categoryTabItem, index === 2 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 2 && styles.categoryTabItemTextActive, isDark && index === 2 && {color:COLOR.primary}]}>Women</Text></TouchableOpacity>
-      <TouchableOpacity onPress={() => setIndex(3)} style={[styles.categoryTabItem, index === 3 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 3 && styles.categoryTabItemTextActive, isDark && index === 3 && {color:COLOR.primary}]}>Boy</Text></TouchableOpacity>
-      <TouchableOpacity onPress={() => setIndex(4)} style={[styles.categoryTabItem, index === 4 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 4 && styles.categoryTabItemTextActive, isDark && index === 4 && {color:COLOR.primary}]}>Girl</Text></TouchableOpacity>
+    <View style={[styles.categoryTab, isDark && { borderColor: COLOR.primary }]}>
+      <TouchableOpacity onPress={() => setIndex(0)} style={[styles.categoryTabItem, index === 0 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 0 && styles.categoryTabItemTextActive, isDark && index === 0 && { color: COLOR.primary }]}>All</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => setIndex(1)} style={[styles.categoryTabItem, index === 1 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 1 && styles.categoryTabItemTextActive, isDark && index === 1 && { color: COLOR.primary }]}>Men</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => setIndex(2)} style={[styles.categoryTabItem, index === 2 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 2 && styles.categoryTabItemTextActive, isDark && index === 2 && { color: COLOR.primary }]}>Women</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => setIndex(3)} style={[styles.categoryTabItem, index === 3 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 3 && styles.categoryTabItemTextActive, isDark && index === 3 && { color: COLOR.primary }]}>Boy</Text></TouchableOpacity>
+      <TouchableOpacity onPress={() => setIndex(4)} style={[styles.categoryTabItem, index === 4 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 4 && styles.categoryTabItemTextActive, isDark && index === 4 && { color: COLOR.primary }]}>Girl</Text></TouchableOpacity>
       <View style={styles.categoryTabItem}></View>
     </View>
+  </View>
+)
+
+const CategoryTabBottom = ({isDark}) => (
+  <View style={styles.catBottWrap}>
+
+    <TouchableOpacity onPress={() => ToastAndroid.showWithGravity('Under Construction', ToastAndroid.LONG, ToastAndroid.BOTTOM,)} style={styles.catBottomCont}>
+      <Text style={[styles.catBottomText, isDark && {color:COLOR.secondary_alpha}]}>View All</Text>
+    </TouchableOpacity>
   </View>
 )
 
@@ -67,6 +110,9 @@ const CategoryTab = ({isDark, index, setIndex }) => (
 
 
 const styles = StyleSheet.create({
+  catBottomText: { fontSize: 15, fontStyle: 'Lato-Bold', color: COLOR.backgroundBlack },
+  catBottomCont: { width: '100%', height: 30, alignSelf: 'flex-end', justifyContent: 'center', borderWidth: 1, borderColor: COLOR.lightGrey, alignItems: 'center', justifyContent: "center" },
+  catBottWrap: { paddingHorizontal: 20, width: '100%', height: 30 },
   container: { flex: 1, backgroundColor: COLOR.white },
   categoryTabItemActive: { borderBottomWidth: 1 },
 

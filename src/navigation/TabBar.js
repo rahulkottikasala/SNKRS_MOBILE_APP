@@ -1,5 +1,5 @@
 import { View, Text, TouchableOpacity, Dimensions, Image, Platform, StyleSheet, StatusBar, useColorScheme } from 'react-native'
-import React, { useContext, useState } from 'react'
+import React, { Children, useContext, useState } from 'react'
 import { COLOR } from '../const/Color'
 import HomeIcon from '../assets/icons/home.png'
 import HomeIconW from '../assets/icons/home-w.png'
