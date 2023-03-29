@@ -110,6 +110,8 @@ export const AtmCardFront = ({ cardNumber, name, expiry }) => {
                             : <Text style={{ fontSize: 17, width: 13, fontFamily: 'Lato-Bold', color: COLOR.secondary_alpha, opacity: .8, marginRight: 1 }}>X</Text>
                     }
 
+
+
                 </View>
 
                 <View style={{ width: '100%', height: 90, flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 20, alignItems: "center" }}>

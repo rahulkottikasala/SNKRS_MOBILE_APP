@@ -9,6 +9,10 @@ const Payment = () => {
     <View style={{flex:1, backgroundColor:COLOR.backgroundBlack, alignItems:"center", justifyContent:'center'}}>
       <Text style={{fontSize:35}} onPress={() => navigation.navigate("CardDetails")}>Payment ^</Text>
     </View>
+
+    // <View style={{flex:1, }}>
+
+    // </View>
   )
 }
 

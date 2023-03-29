@@ -24,7 +24,7 @@ export const MyStack = () => (
     <Stack.Screen name="Register" component={Register} options={{ headerShown: false }} />
     <Stack.Screen name="Forgot" component={ForgotPassword} options={{ headerShown: false }} />
     <Stack.Screen name="TabBar" component={TabBar} options={{ headerShown: false }} />
-    {/* <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} /> */}
+    <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
     <Stack.Screen name="Category" component={Category} options={{ headerShown: false }} />
     <Stack.Screen name="Wishlist" component={Wishlist} options={{ headerShown: false }} />
     <Stack.Screen name="Profile" component={Profile} options={{ headerShown: false }} />
