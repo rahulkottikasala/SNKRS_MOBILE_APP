@@ -52,7 +52,6 @@ const Home = () => {
     navigation.navigate("ViewDetails")
   }
 
-  
 
   return (
     <View style={[styles.container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
