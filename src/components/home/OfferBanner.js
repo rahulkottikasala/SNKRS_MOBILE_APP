@@ -18,7 +18,7 @@ export const OfferBanner  = () => (
     height:160,
     paddingHorizontal:20,
     justifyContent:'center',
-    marginTop:20
+    marginVertical:20
   },
   subContainer:{
   width:'100%',

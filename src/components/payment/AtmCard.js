@@ -14,7 +14,7 @@ export const AtmCardFront = ({ cardNumber, name, expiry }) => {
 
 
     return (
-        <Animated.View entering={FlipInEasyY.duration(750)} style={{ height: 186, width: '100%', paddingHorizontal: 10, minWidth: 300 }}>
+        <Animated.View entering={FlipInEasyY.duration(750)} style={{ height: 226, width: '100%', paddingHorizontal: 10, minWidth: 300, paddingVertical:20, justifyContent:'center' }}>
             <Animated.View style={{ height: 186, width: '100%', backgroundColor: "grey", borderRadius: 20, overflow: 'hidden', backgroundColor: COLOR.primary, }}>
                 <View style={{ width: '100%', height: 56, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' }}>
                     <Image source={chip} style={{ width: 40, resizeMode: 'contain', height: 35 }} />
@@ -142,7 +142,7 @@ export const AtmCardFront = ({ cardNumber, name, expiry }) => {
 
 export const AtmCardBack = ({ cvv }) => {
     return (
-        <Animated.View entering={FlipInEasyY.duration(750)} style={{ height: 186, width: '100%', paddingHorizontal: 10, minWidth: 300 }}>
+        <Animated.View entering={FlipInEasyY.duration(750)} style={{ height: 226, width: '100%', paddingHorizontal: 10,paddingVertical:20, minWidth: 300 }}>
             <View style={{ height: 186, width: '100%', backgroundColor: "grey", borderRadius: 20, overflow: 'hidden', backgroundColor: COLOR.primary, }}>
                 <Text style={{ height: 22, fontSize: 10, textAlignVertical: "center", textAlign: "center" }}>For customer service, call +123-456-789 </Text>
 

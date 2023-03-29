@@ -47,12 +47,12 @@ const ViewDetails = () => {
 
     return (
         <View style={styles.container}>
+            <Header backBtn={handleBackNavigation} bg={isDark ? COLOR.backgroundBlack : COLOR.secondary_shade} />
             {
                 isDark ?
                     <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
                     : <StatusBar backgroundColor={COLOR.secondary_shade} barStyle='dark-content' />
             }
-            <Header backBtn={handleBackNavigation} bg={isDark ? COLOR.backgroundBlack : COLOR.secondary_shade} />
 
             {/* ------------Scroll View------------- */}
             <ScrollView style={[styles.details_container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>

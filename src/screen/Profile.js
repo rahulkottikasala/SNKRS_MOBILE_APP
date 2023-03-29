@@ -19,6 +19,10 @@ const Profile = ({ }) => {
     navigation.navigate('Login')
   }
 
+  const handleBack = () => {
+    navigation.pop()
+  }
+
 
   const handlePayment = () => {
     navigation.navigate("Payment")  

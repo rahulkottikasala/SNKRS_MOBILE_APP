@@ -13,6 +13,6 @@ export const ProfileCard = ({ name, action, isDark }) => {
 
 const styles = StyleSheet.create({
   profileCard: { height: 60, width: '100%', borderRadius: 10, backgroundColor: COLOR.white, borderWidth: .8, borderColor: COLOR.primary, justifyContent: 'center', paddingHorizontal: 20, marginTop: 15 },
-  cardTitle: { fontSize: 14, fontFamily: 'Lato-Bold' }
+  cardTitle: { fontSize: 14, fontFamily: 'Lato-Bold', color:COLOR.black }
 })
 

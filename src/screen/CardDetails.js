@@ -6,8 +6,11 @@ import Header from '../components/Header'
 import { ScrollView } from 'react-native-gesture-handler'
 import ViewHeight from '../components/ViewHeight'
 import Button from '../components/auth/Button'
+import { useNavigation } from '@react-navigation/native'
 
 const CardDetails = () => {
+
+  const navigation = useNavigation()
 
   const [cardNumber, setCardNumber] = useState("")
   const [name, setName] = useState("")
@@ -35,6 +38,10 @@ const CardDetails = () => {
     }
   }
 
+  const handleBack = () => {
+    navigation.pop()
+  }
+
   return (
     <View style={[{ flex: 1, backgroundColor: COLOR.white }, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
         {
@@ -42,7 +49,7 @@ const CardDetails = () => {
         <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
         : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
     }
-      <Header />
+      <Header backBtn={handleBack} title={"Insert Card Details"} />
       <ScrollView>
         <View style={{ paddingHorizontal: 20, marginTop: 30, alignItems: "center" }}>
           {focus ?

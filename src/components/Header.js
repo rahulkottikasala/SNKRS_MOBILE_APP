@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, useColorScheme } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity,StatusBar, Image, useColorScheme } from 'react-native'
 import React from 'react'
 import ArrowLeft from '../assets/icons/arrow-left.png'
 import HeartIcon from '../assets/icons/heart.png'
@@ -20,6 +20,13 @@ const Header = ({ backBtn, title, bg, isCart }) => {
     const navigation = useNavigation()
     return (
         <View style={[styles.container, bg && { backgroundColor: bg }]}>
+
+{
+                isDark ?
+                    <StatusBar backgroundColor={COLOR.backgroundBlack} barStyle='light-content' />
+                    : <StatusBar backgroundColor={COLOR.white} barStyle='dark-content' />
+            }
+
             {title && <View style={styles.headerTextContainer}>
                 <Text style={[styles.headerText, isDark && { color: COLOR.secondary_alpha }]}>{title && title}</Text>
             </View>}
@@ -94,7 +101,7 @@ const styles = StyleSheet.create({
     },
     headerText: {
         color: COLOR.backgroundBlack,
-        fontSize: 20,
+        fontSize: 18,
         fontFamily: 'Lato-Bold'
     }
 })

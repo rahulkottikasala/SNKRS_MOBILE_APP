@@ -55,7 +55,7 @@ const Home = () => {
   return (
     <View style={[styles.container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
       <Header />
-      <ScrollView>
+      <ScrollView stickyHeaderIndices={[2]}>
         <WelcomeText isDark={isDark} />
         <OfferBanner />
         <CategoryTab isDark={isDark} index={categoryTabIndex} setIndex={setCategoryTabIndex} />
@@ -68,7 +68,7 @@ const Home = () => {
             ))
           }
         </View>
-        <CategoryTabBottom isDark={isDark}/>
+        <CategoryTabBottom isDark={isDark} />
 
         <FeaturedProduct isDark={isDark} />
         <InterstingProduct isDark={isDark} />
@@ -85,7 +85,7 @@ export default Home
 
 
 const CategoryTab = ({ isDark, index, setIndex }) => (
-  <View style={styles.categoryTabContainer}>
+  <View style={[styles.categoryTabContainer, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
     <View style={[styles.categoryTab, isDark && { borderColor: COLOR.primary }]}>
       <TouchableOpacity onPress={() => setIndex(0)} style={[styles.categoryTabItem, index === 0 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 0 && styles.categoryTabItemTextActive, isDark && index === 0 && { color: COLOR.primary }]}>All</Text></TouchableOpacity>
       <TouchableOpacity onPress={() => setIndex(1)} style={[styles.categoryTabItem, index === 1 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, index === 1 && styles.categoryTabItemTextActive, isDark && index === 1 && { color: COLOR.primary }]}>Men</Text></TouchableOpacity>
@@ -97,11 +97,11 @@ const CategoryTab = ({ isDark, index, setIndex }) => (
   </View>
 )
 
-const CategoryTabBottom = ({isDark}) => (
+const CategoryTabBottom = ({ isDark }) => (
   <View style={styles.catBottWrap}>
 
     <TouchableOpacity onPress={() => ToastAndroid.showWithGravity('Under Construction', ToastAndroid.LONG, ToastAndroid.BOTTOM,)} style={styles.catBottomCont}>
-      <Text style={[styles.catBottomText, isDark && {color:COLOR.secondary_alpha}]}>View All</Text>
+      <Text style={[styles.catBottomText, isDark && { color: COLOR.secondary_alpha }]}>View All</Text>
     </TouchableOpacity>
   </View>
 )
@@ -121,7 +121,9 @@ const styles = StyleSheet.create({
   categoryTabContainer: {
     width: '100%',
     paddingHorizontal: 20,
-    marginTop: 10
+    height: 50,
+    justifyContent: 'center',
+    backgroundColor: COLOR.white
   },
   categoryTab: {
     width: '100%',
