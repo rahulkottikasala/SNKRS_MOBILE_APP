@@ -52,10 +52,12 @@ const Home = () => {
     navigation.navigate("ViewDetails")
   }
 
+  
+
   return (
     <View style={[styles.container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
       <Header />
-      <ScrollView stickyHeaderIndices={[2]}>
+      <ScrollView stickyHeaderIndices={[2]} showsVerticalScrollIndicator={false} >
         <WelcomeText isDark={isDark} />
         <OfferBanner />
         <CategoryTab isDark={isDark} index={categoryTabIndex} setIndex={setCategoryTabIndex} />

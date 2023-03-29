@@ -59,7 +59,7 @@ const Payment = () => {
   })
 
   return (
-    <View style={[{ flex: 1, backgroundColor: COLOR.white, marginBottom: 20 }, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
+    <View style={[{ flex: 1, backgroundColor: COLOR.white, }, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
       <Header backBtn={handleBack} title={"Payment Details"} />
       <ScrollView>
         <View style={{ width: '100%', paddingHorizontal: 20, }}>
