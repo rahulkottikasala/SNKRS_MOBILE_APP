@@ -1,5 +1,5 @@
-import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, useColorScheme, StatusBar, ToastAndroid } from 'react-native'
-import React, { useState } from 'react'
+import { View, Text, ScrollView, StyleSheet, Image, TouchableOpacity, useColorScheme, StatusBar, ToastAndroid, Dimensions } from 'react-native'
+import React, { useState, useMemo } from 'react'
 import Header from '../components/Header'
 import { COLOR } from '../const/Color'
 import { WelcomeText } from '../components/home/WelcomeText'
@@ -13,6 +13,9 @@ import converse from '../assets/dummy/converse.png'
 import { useNavigation } from '@react-navigation/native'
 import InterstingProduct from '../components/home/InterstingProduct'
 import FeaturedProduct from '../components/home/FeaturedProduct'
+import Animated, { runOnJS, useAnimatedProps, useAnimatedScrollHandler, useAnimatedStyle, useSharedValue, withTiming } from 'react-native-reanimated'
+
+const { height } = Dimensions.get("window")
 
 const Home = () => {
 
@@ -46,20 +49,60 @@ const Home = () => {
   const isDark = useColorScheme() === 'dark';
 
   const navigation = useNavigation()
+
   const [categoryTabIndex, setCategoryTabIndex] = useState(1)
+
+  const stickyBorder = useSharedValue()
+  const stickyHeight = useSharedValue()
+  const totalLength = useSharedValue(1100)
 
   const handleViewDetails = () => {
     navigation.navigate("ViewDetails")
   }
 
+  const scrollHandler = useAnimatedScrollHandler({
+    onScroll: (e) => {
+      const { contentOffset } = e;
+
+      if (contentOffset.y > totalLength.value) {
+        stickyBorder.value = 0
+        stickyHeight.value = 0
+
+      } else {
+        stickyBorder.value = 1
+        stickyHeight.value = 40
+      }
+    }
+  });
+
+  const tabBarStyle = useAnimatedStyle(() => {
+    return {
+      height: withTiming(stickyHeight.value),
+      borderWidth: withTiming(stickyBorder.value)
+    }
+  })
+
 
   return (
     <View style={[styles.container, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
       <Header />
-      <ScrollView stickyHeaderIndices={[2]} showsVerticalScrollIndicator={false} >
+      <Animated.ScrollView onScroll={scrollHandler} stickyHeaderIndices={[2]} showsVerticalScrollIndicator={false} >
         <WelcomeText isDark={isDark} />
         <OfferBanner />
-        <CategoryTab isDark={isDark} index={categoryTabIndex} setIndex={setCategoryTabIndex} />
+
+        {/* Animated Tabbar */}
+        <Animated.View style={[styles.categoryTabContainer, isDark && { backgroundColor: COLOR.backgroundBlack }]}>
+          <Animated.View style={[styles.categoryTab, tabBarStyle, isDark && { borderColor: COLOR.primary },]}>
+            <TouchableOpacity onPress={() => setCategoryTabIndex(0)} style={[styles.categoryTabItem, categoryTabIndex === 0 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, categoryTabIndex === 0 && styles.categoryTabItemTextActive, isDark && categoryTabIndex === 0 && { color: COLOR.primary }]}>All</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => setCategoryTabIndex(1)} style={[styles.categoryTabItem, categoryTabIndex === 1 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, categoryTabIndex === 1 && styles.categoryTabItemTextActive, isDark && categoryTabIndex === 1 && { color: COLOR.primary }]}>Men</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => setCategoryTabIndex(2)} style={[styles.categoryTabItem, categoryTabIndex === 2 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, categoryTabIndex === 2 && styles.categoryTabItemTextActive, isDark && categoryTabIndex === 2 && { color: COLOR.primary }]}>Women</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => setCategoryTabIndex(3)} style={[styles.categoryTabItem, categoryTabIndex === 3 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, categoryTabIndex === 3 && styles.categoryTabItemTextActive, isDark && categoryTabIndex === 3 && { color: COLOR.primary }]}>Boy</Text></TouchableOpacity>
+            <TouchableOpacity onPress={() => setCategoryTabIndex(4)} style={[styles.categoryTabItem, categoryTabIndex === 4 && styles.categoryTabItemActive]}><Text style={[styles.categoryTabItemText, categoryTabIndex === 4 && styles.categoryTabItemTextActive, isDark && categoryTabIndex === 4 && { color: COLOR.primary }]}>Girl</Text></TouchableOpacity>
+            <View style={styles.categoryTabItem}></View>
+          </Animated.View>
+        </Animated.View>
+
+        {/* Card Maping */}
         <View style={styles.product_list}>
           {/* -----card----- */}
           {
@@ -69,6 +112,7 @@ const Home = () => {
             ))
           }
         </View>
+
         <CategoryTabBottom isDark={isDark} />
 
         <FeaturedProduct isDark={isDark} />
@@ -76,7 +120,7 @@ const Home = () => {
 
         <ViewHeight />
         <ViewHeight />
-      </ScrollView>
+      </Animated.ScrollView>
     </View>
   )
 }
@@ -122,11 +166,11 @@ const styles = StyleSheet.create({
   categoryTabContainer: {
     width: '100%',
     paddingHorizontal: 20,
-    height: 50,
     justifyContent: 'center',
     backgroundColor: COLOR.white
   },
   categoryTab: {
+    marginVertical: 5,
     width: '100%',
     height: 40,
     borderRadius: 10,
