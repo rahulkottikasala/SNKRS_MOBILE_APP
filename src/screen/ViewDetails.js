@@ -8,6 +8,7 @@ import ViewIcon from '../assets/icons/view.png'
 import ViewIconW from '../assets/icons/view-w.png'
 import DeliveryAddress from '../components/product/DeliveryAddress'
 import ViewHeight from '../components/ViewHeight'
+import { STRING } from '../const/String'
 
 const ViewDetails = () => {
     const isDark = useColorScheme() === 'dark';
@@ -80,7 +81,7 @@ const ViewDetails = () => {
             <View style={[styles.cart_count_container, isDark && { borderTopWidth: 1, borderTopColor: COLOR.primary }]}>
                 <View style={styles.price_container}>
                     <Text style={styles.price_labal_text}>Price :</Text>
-                    <Text style={styles.offer_price}>${cart > 0 ? 180.00 * cart : 180.00}    <Text style={styles.current_price}>${cart > 0 ? 230.00 * cart : 230.00}</Text></Text>
+                    <Text style={styles.offer_price}>{STRING.rupee} {cart > 0 ? 180.00 * cart : 180.00}    <Text style={styles.current_price}>{STRING.rupee} {cart > 0 ? 230.00 * cart : 230.00}</Text></Text>
                 </View>
                 <View style={styles.button_container}>
                     {cart > 0 && !outOfStock ?

@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { COLOR } from '../../const/Color'
+import { STRING } from '../../const/String'
 
 export const Card = ({ isDark, cardImage, action, isSmall, bg }) => (
 
@@ -14,9 +15,9 @@ export const Card = ({ isDark, cardImage, action, isSmall, bg }) => (
     <View style={styles.info_container}>
       <Text numberOfLines={2} ellipsizeMode='tail' style={[styles.product_name, isDark && { color: COLOR.secondary_alpha }, isSmall && { fontSize: 12 }]}>Converse All Star Sneakers </Text>
       <View style={styles.price_container}>
-        <Text style={[styles.offer_price, isSmall && {fontSize:14}]}>$180.00</Text>
+        <Text style={[styles.offer_price, isSmall && {fontSize:14}]}>{STRING.rupee} 180.00</Text>
         {!isSmall &&
-          <Text style={[styles.current_price, bg && {color:COLOR.black}]}>$200.70</Text>
+          <Text style={[styles.current_price, bg && {color:COLOR.black}]}>{STRING.rupee} 200.70</Text>
         }
       </View>
     </View>

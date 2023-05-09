@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { COLOR } from '../../const/Color'
 import { DashLine, NormalLine } from '../Line'
+import { STRING } from '../../const/String'
 
 export const BillCard = ({isDark}) => {
     return (
@@ -10,27 +11,27 @@ export const BillCard = ({isDark}) => {
 
                 <View style={styles.rowCont}>
                     <Text style={styles.rowKey}>Price ( x Items )</Text>
-                    <Text style={styles.rowValue}>$1200</Text>
+                    <Text style={styles.rowValue}>{STRING.rupee}1200</Text>
                 </View>
 
                 <View style={styles.rowCont}>
                     <Text style={styles.rowKey}>Discount</Text>
-                    <Text style={styles.rowValue}>- $12</Text>
+                    <Text style={styles.rowValue}>- {STRING.rupee}12</Text>
                 </View>
 
                 <View style={styles.rowCont}>
                     <Text style={styles.rowKey}>Delivery Charges</Text>
-                    <Text style={[styles.rowValue, { fontSize: 12, color: COLOR.green }]}>FREE Delivery | $5</Text>
+                    <Text style={[styles.rowValue, { fontSize: 12, color: COLOR.green }]}>FREE Delivery |  {STRING.rupee}5</Text>
                 </View>
                 <DashLine />
                 <View style={styles.rowCont}>
                     <Text style={[styles.rowKey, { color: COLOR.backgroundBlack, fontSize: 17 }]}>Total Amount</Text>
-                    <Text style={styles.rowValue}>$1188</Text>
+                    <Text style={styles.rowValue}>{STRING.rupee}1188</Text>
                 </View>
                 <NormalLine />
 
                 <View style={{ width: '100%', height: 40, borderWidth: 1 , borderColor:COLOR.green, marginTop:5, opacity:.8,  justifyContent:'center', alignItems:'center'}}>
-                    <Text style={{ fontSize: 15, fontFamily: 'Lato-Black', color: COLOR.green }}>You will save $12 on this order</Text>
+                    <Text style={{ fontSize: 15, fontFamily: 'Lato-Black', color: COLOR.green }}>You will save {STRING.rupee}12 on this order</Text>
                 </View>
 
             </View>

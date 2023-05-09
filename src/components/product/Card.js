@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import { COLOR } from "../../const/Color"
 import Snkrs from '../../assets/dummy/running.png'
+import { STRING } from "../../const/String"
 
 export const Card = ({ isCart, isDark }) => {
     return (
@@ -13,7 +14,7 @@ export const Card = ({ isCart, isDark }) => {
                     <View style={styles.textContainer}>
                         <Text ellipsizeMode="tail" style={[styles.title, isDark && {color:COLOR.secondary_alpha}]}>Tittle</Text>
                         <Text numberOfLines={2} ellipsizeMode="tail" style={[styles.subTitle,isDark && {color:COLOR.secondary_alpha}]}>offer applied 50% offer applied 50% offer applied 50% offer applied 50% </Text>
-                        <Text style={[styles.price,isDark && {color:COLOR.secondary_alpha}]}>$ 120.</Text>
+                        <Text style={[styles.price,isDark && {color:COLOR.secondary_alpha}]}>{STRING.rupee} 120.</Text>
                     </View>
                     <View style={styles.buttonContainer}>
                         {

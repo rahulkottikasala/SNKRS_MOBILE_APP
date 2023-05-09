@@ -2,13 +2,14 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { COLOR } from '../../const/Color'
 import { NormalLine } from '../Line'
+import { STRING } from '../../const/String'
 
 export const PlaceOrderButton = ({ isDark }) => {
     return (
         <View style={styles.container}>
             <View style={[styles.subCont, isDark && { borderColor: COLOR.secondary_alpha }]}>
                 <View style={styles.textWrap}>
-                    <Text numberOfLines={1} style={[styles.topText, , isDark && { color: COLOR.secondary_alpha }]}><Text>Total : </Text>$240</Text>
+                    <Text numberOfLines={1} style={[styles.topText, , isDark && { color: COLOR.secondary_alpha }]}><Text>Total : </Text>{STRING.rupee} 1188</Text>
 
                 </View>
                 <View style={styles.btnWrap}>
