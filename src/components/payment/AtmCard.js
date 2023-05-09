@@ -1,5 +1,5 @@
 
-import { View, StyleSheet, Image, Text } from "react-native";
+import { View, StyleSheet, Image, Text, Dimensions } from "react-native";
 import { useState, useEffect } from 'react'
 
 import meas from '../../assets/images/payment/meas_card.png';
@@ -8,14 +8,17 @@ import chip from '../../assets/images/payment/chip_card.png';
 import { COLOR } from "../../const/Color";
 import Animated, { FlipInEasyX, FlipInEasyY, FlipInXDown, FlipInXUp, FlipOutEasyX, Layout, RollInLeft, RotateInDownLeft } from "react-native-reanimated";
 
+const {height, width} = Dimensions.get('window');
 
+const cardWidth = width * .80;
+const cardheight = width / 2;
 
 export const AtmCardFront = ({ cardNumber, name, expiry }) => {
 
 
     return (
-        <Animated.View entering={FlipInEasyY.duration(750)} style={{ height: 226, width: '100%', paddingHorizontal: 10, minWidth: 300, paddingVertical:20, justifyContent:'center' }}>
-            <Animated.View style={{ height: 186, width: '100%', backgroundColor: "grey", borderRadius: 20, overflow: 'hidden', backgroundColor: COLOR.primary, }}>
+        <Animated.View entering={FlipInEasyY.duration(750)} style={{ height: cardheight + 40, width: cardWidth,alignSelf:'center',  minWidth: 300, paddingVertical:20, justifyContent:'center', alignItems:'center' }}>
+            <Animated.View style={{ height:cardheight,maxHeight:cardheight, width: '100%', backgroundColor: "grey", borderRadius: 20, overflow: 'hidden', backgroundColor: COLOR.primary, }}>
                 <View style={{ width: '100%', height: 56, paddingHorizontal: 20, flexDirection: 'row', alignItems: 'flex-end', justifyContent: 'space-between' }}>
                     <Image source={chip} style={{ width: 40, resizeMode: 'contain', height: 35 }} />
                     <View style={{ flexDirection: 'row' }}>
@@ -142,8 +145,8 @@ export const AtmCardFront = ({ cardNumber, name, expiry }) => {
 
 export const AtmCardBack = ({ cvv }) => {
     return (
-        <Animated.View entering={FlipInEasyY.duration(750)} style={{ height: 226, width: '100%', paddingHorizontal: 10,paddingVertical:20, minWidth: 300 }}>
-            <View style={{ height: 186, width: '100%', backgroundColor: "grey", borderRadius: 20, overflow: 'hidden', backgroundColor: COLOR.primary, }}>
+        <Animated.View entering={FlipInEasyY.duration(750)} style={{ height: cardheight + 40, width: cardWidth,alignSelf:'center', paddingHorizontal: 10,paddingVertical:20, minWidth: 300 }}>
+            <View style={{ height:cardheight, width: '100%', backgroundColor: "grey", borderRadius: 20, overflow: 'hidden', backgroundColor: COLOR.primary, }}>
                 <Text style={{ height: 22, fontSize: 10, textAlignVertical: "center", textAlign: "center" }}>For customer service, call +123-456-789 </Text>
 
                 <View style={{ width: '100%', height: 50, backgroundColor: COLOR.black, }} />

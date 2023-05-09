@@ -51,7 +51,7 @@ const CardDetails = () => {
     }
       <Header backBtn={handleBack} title={"Insert Card Details"} />
       <ScrollView>
-        <View style={{ paddingHorizontal: 20, marginTop: 30, alignItems: "center" }}>
+        <View style={{ paddingHorizontal: 20, marginTop: 30, alignItems: "center" , justifyContent:'center'}}>
           {focus ?
             <AtmCardBack cvv={cvv} />
             : <AtmCardFront cardNumber={cardNumber} name={name} expiry={expiryMonth.length == 1 ? "0" + expiryMonth + expiryYear : expiryMonth + expiryYear} cvv={cvv} />
